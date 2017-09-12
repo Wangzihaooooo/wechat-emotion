@@ -13,7 +13,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class) //使用Springtest框架
 @ContextConfiguration(locations = {"/mybatis/mybatis3.xml", "/spring/springmvc.xml"}) //加载配置
 public class test {
-    @Resource //注入
+    @Resource //注入aaaa
     private MusicDao        musicDao;
     @Resource
     private UserServiceImpl userService;
