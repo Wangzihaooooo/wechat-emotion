@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- Spring 整合 myBatis 后，这个配置文件基本可以不要了-->
+    <!-- 设置外部配置文件 -->
+    <!-- 设置类别名 -->
+    <!-- 设置数据库连接环境 -->
+    <!-- 映射文件 -->
+
+    <!-- ........................................................................................ -->
+
+        <!--    &lt;!&ndash;development是开发模式
+                work是工作模式 发布的时候才会用
+                默认的环境 ID（比如:default=”development”）。
+                每个 environment 元素定义的环境 ID（比如:id=”development”）。
+                事务管理器的配置（比如:type=”JDBC”）。
+                数据源的配置（比如:type=”POOLED”）。
+            &ndash;&gt;
+            &lt;!&ndash;加载数据库的配置信息文件&ndash;&gt;
+            <properties resource="conf/db.properties"/>
+            &lt;!&ndash;typeAliase是将实体类的全名如com.wangzi.model.User 改为User
+            package是将com.wangzi.model里全部的实体类的全名都改名字为其类名即User&ndash;&gt;
+            <typeAliases>
+                <typeAlias type="com.wangzi.domain.User" alias="User"/>
+                <package name="com.wangzi.domain"/>
+            </typeAliases>
+
+            <environments default="development">
+                <environment id="development">
+                    <transactionManager type="JDBC" />
+                    <dataSource type="POOLED">
+                        &lt;!&ndash;从6.0开始mysql driver的class变成com.mysql.cj.jdbc.Driver了 之前是com.mysql.jdbc.Driver&ndash;&gt;
+                        <property name="driver" value="${db.driver}" />
+                        &lt;!&ndash; 数据库驱动高于6.0版本的需要添加serverTimezone=UTC&ndash;&gt;
+                        <property name="url" value="${jdbc.url}" />
+                        <property name="username" value="${jdbc.username}" />
+                        <property name="password" value="${jdbc.password}" />
+                    </dataSource>
+                </environment>
+            </environments>
+
+            &lt;!&ndash;映射器&ndash;&gt;
+            <mappers>
+                <com.sys.persistence.mapper resource="com/wangzi/com.sys.persistence.mapper/UserMapper.xml"/>
+            </mappers>-->
+</configuration>

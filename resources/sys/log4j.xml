@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="Console" class="org.apache.log4j.ConsoleAppender">
+        <!-- 输出内容格式 -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p %d{MM-dd HH:mm:ss,SSS} %m (%F:%L) \n" />
+        </layout>
+    </appender>
+
+    <appender name="File" class="org.apache.log4j.DailyRollingFileAppender">
+        <errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+        <!-- 日志文件位置 -->
+        <param name="File" value="F://idea/weixin/webapp/WEB-INF/log/sys.log" />
+        <!-- 是否在重新启动服务时，在原有的基础上追加日志 -->
+        <param name="Append" value="true" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <!-- 输出内容格式 -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p %d{MM-dd HH:mm:ss,SSS} %m (%F:%L) \n" />
+        </layout>
+    </appender>
+
+    <logger name="org.springframework">
+        <level value="ERROR" />
+    </logger>
+
+    <logger name="org.mybatis.spring">
+        <level value="ERROR" />
+    </logger>
+
+    <logger name="net.sf.ehcache">
+        <level value="ERROR" />
+    </logger>
+
+    <logger name="com.mchange.v2">
+        <level value="ERROR" />
+    </logger>
+
+    <logger name="java.sql">
+        <level value="ERROR" />
+    </logger>
+
+    <logger name="org.apache.activemq">
+        <level value="ERROR"/>
+    </logger>
+
+    <root>
+        <level value="DEBUG" />
+        <!--<appender-ref ref="FILE" />   将日志输出到文件中-->
+        <!--<appender-ref ref="STDOUT" />  将日志输出到控制台中-->
+        <appender-ref ref="Console"/>
+        <appender-ref ref="File"/>
+    </root>
+</log4j:configuration>

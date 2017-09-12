@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sys.persistence.dao.MusicCollectionDao" >
+  <resultMap id="BaseResultMap" type="com.sys.persistence.domain.MusicCollection" >
+    <id column="RECORD_ID_" property="recordId" jdbcType="VARCHAR" />
+    <result column="USER_ID_" property="userId" jdbcType="VARCHAR" />
+    <result column="SONG_ID_" property="songId" jdbcType="VARCHAR" />
+    <result column="DATE_" property="date" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RECORD_ID_, USER_ID_, SONG_ID_, DATE_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_music_collection
+    where RECORD_ID_ = #{recordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_music_collection
+    where RECORD_ID_ = #{recordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sys.persistence.domain.MusicCollection" >
+    insert into sys_music_collection (RECORD_ID_, USER_ID_, SONG_ID_, 
+      DATE_)
+    values (#{recordId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{songId,jdbcType=VARCHAR}, 
+      #{date,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sys.persistence.domain.MusicCollection" >
+    insert into sys_music_collection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        RECORD_ID_,
+      </if>
+      <if test="userId != null" >
+        USER_ID_,
+      </if>
+      <if test="songId != null" >
+        SONG_ID_,
+      </if>
+      <if test="date != null" >
+        DATE_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="songId != null" >
+        #{songId,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sys.persistence.domain.MusicCollection" >
+    update sys_music_collection
+    <set >
+      <if test="userId != null" >
+        USER_ID_ = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="songId != null" >
+        SONG_ID_ = #{songId,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        DATE_ = #{date,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RECORD_ID_ = #{recordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sys.persistence.domain.MusicCollection" >
+    update sys_music_collection
+    set USER_ID_ = #{userId,jdbcType=VARCHAR},
+      SONG_ID_ = #{songId,jdbcType=VARCHAR},
+      DATE_ = #{date,jdbcType=TIMESTAMP}
+    where RECORD_ID_ = #{recordId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sys.persistence.dao.MusicDao" >
+  <resultMap id="BaseResultMap" type="com.sys.persistence.domain.Music" >
+    <id column="SONG_ID_" property="songId" jdbcType="VARCHAR" />
+    <result column="SONG_TAG_" property="songTag" jdbcType="VARCHAR" />
+    <result column="SONG_TITLE_" property="songTitle" jdbcType="VARCHAR" />
+    <result column="SONG_TIME_" property="songTime" jdbcType="VARCHAR" />
+    <result column="SONG_PIC_" property="songPic" jdbcType="VARCHAR" />
+    <result column="SONG_DIR_" property="songDir" jdbcType="VARCHAR" />
+    <result column="SINGER_NAME_" property="singerName" jdbcType="VARCHAR" />
+    <result column="ALBUM_TITLE_" property="albumTitle" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SONG_ID_, SONG_TAG_, SONG_TITLE_, SONG_TIME_, SONG_PIC_, SONG_DIR_, SINGER_NAME_, 
+    ALBUM_TITLE_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_music
+    where SONG_ID_ = #{songId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByTag" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_music
+    where SONG_TAG_ = #{songTag,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_music
+    where SONG_ID_ = #{songId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sys.persistence.domain.Music" >
+    insert into sys_music (SONG_ID_, SONG_TAG_, SONG_TITLE_, 
+      SONG_TIME_, SONG_PIC_, SONG_DIR_, 
+      SINGER_NAME_, ALBUM_TITLE_)
+    values (#{songId,jdbcType=VARCHAR}, #{songTag,jdbcType=VARCHAR}, #{songTitle,jdbcType=VARCHAR}, 
+      #{songTime,jdbcType=VARCHAR}, #{songPic,jdbcType=VARCHAR}, #{songDir,jdbcType=VARCHAR}, 
+      #{singerName,jdbcType=VARCHAR}, #{albumTitle,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sys.persistence.domain.Music" >
+    insert into sys_music
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="songId != null" >
+        SONG_ID_,
+      </if>
+      <if test="songTag != null" >
+        SONG_TAG_,
+      </if>
+      <if test="songTitle != null" >
+        SONG_TITLE_,
+      </if>
+      <if test="songTime != null" >
+        SONG_TIME_,
+      </if>
+      <if test="songPic != null" >
+        SONG_PIC_,
+      </if>
+      <if test="songDir != null" >
+        SONG_DIR_,
+      </if>
+      <if test="singerName != null" >
+        SINGER_NAME_,
+      </if>
+      <if test="albumTitle != null" >
+        ALBUM_TITLE_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="songId != null" >
+        #{songId,jdbcType=VARCHAR},
+      </if>
+      <if test="songTag != null" >
+        #{songTag,jdbcType=VARCHAR},
+      </if>
+      <if test="songTitle != null" >
+        #{songTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="songTime != null" >
+        #{songTime,jdbcType=VARCHAR},
+      </if>
+      <if test="songPic != null" >
+        #{songPic,jdbcType=VARCHAR},
+      </if>
+      <if test="songDir != null" >
+        #{songDir,jdbcType=VARCHAR},
+      </if>
+      <if test="singerName != null" >
+        #{singerName,jdbcType=VARCHAR},
+      </if>
+      <if test="albumTitle != null" >
+        #{albumTitle,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sys.persistence.domain.Music" >
+    update sys_music
+    <set >
+      <if test="songTag != null" >
+        SONG_TAG_ = #{songTag,jdbcType=VARCHAR},
+      </if>
+      <if test="songTitle != null" >
+        SONG_TITLE_ = #{songTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="songTime != null" >
+        SONG_TIME_ = #{songTime,jdbcType=VARCHAR},
+      </if>
+      <if test="songPic != null" >
+        SONG_PIC_ = #{songPic,jdbcType=VARCHAR},
+      </if>
+      <if test="songDir != null" >
+        SONG_DIR_ = #{songDir,jdbcType=VARCHAR},
+      </if>
+      <if test="singerName != null" >
+        SINGER_NAME_ = #{singerName,jdbcType=VARCHAR},
+      </if>
+      <if test="albumTitle != null" >
+        ALBUM_TITLE_ = #{albumTitle,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SONG_ID_ = #{songId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sys.persistence.domain.Music" >
+    update sys_music
+    set SONG_TAG_ = #{songTag,jdbcType=VARCHAR},
+      SONG_TITLE_ = #{songTitle,jdbcType=VARCHAR},
+      SONG_TIME_ = #{songTime,jdbcType=VARCHAR},
+      SONG_PIC_ = #{songPic,jdbcType=VARCHAR},
+      SONG_DIR_ = #{songDir,jdbcType=VARCHAR},
+      SINGER_NAME_ = #{singerName,jdbcType=VARCHAR},
+      ALBUM_TITLE_ = #{albumTitle,jdbcType=VARCHAR}
+    where SONG_ID_ = #{songId,jdbcType=VARCHAR}
+  </update>
+</mapper>
