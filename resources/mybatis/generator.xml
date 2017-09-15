@@ -34,16 +34,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!-- 要生成那些表(更改tableName和domainObjectName就可以)-->
-        <table tableName="spider_music" domainObjectName="Music"  enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false" />
-        <table tableName="spider_song" domainObjectName="Song"  enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false" />
-        <table tableName="spider_singer" domainObjectName="Singer"  enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false" />
-        <table tableName="spider_album" domainObjectName="Album"  enableCountByExample="false"
+        <table tableName="recg_tag" domainObjectName="Tag"  enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" />
 
