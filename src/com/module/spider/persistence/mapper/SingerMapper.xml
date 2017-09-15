@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.spider.persistence.dao.SingerDao" >
+  <resultMap id="BaseResultMap" type="com.module.spider.persistence.domain.Singer" >
+    <id column="SINGER_ID_" property="singerId" jdbcType="INTEGER" />
+    <result column="SINGER_NAME_" property="singerName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SINGER_ID_, SINGER_NAME_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from spider_singer
+    where SINGER_ID_ = #{singerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from spider_singer
+    where SINGER_ID_ = #{singerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.module.spider.persistence.domain.Singer" >
+    insert into spider_singer (SINGER_ID_, SINGER_NAME_)
+    values (#{singerId,jdbcType=INTEGER}, #{singerName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.module.spider.persistence.domain.Singer" >
+    insert into spider_singer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="singerId != null" >
+        SINGER_ID_,
+      </if>
+      <if test="singerName != null" >
+        SINGER_NAME_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="singerId != null" >
+        #{singerId,jdbcType=INTEGER},
+      </if>
+      <if test="singerName != null" >
+        #{singerName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.module.spider.persistence.domain.Singer" >
+    update spider_singer
+    <set >
+      <if test="singerName != null" >
+        SINGER_NAME_ = #{singerName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SINGER_ID_ = #{singerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.module.spider.persistence.domain.Singer" >
+    update spider_singer
+    set SINGER_NAME_ = #{singerName,jdbcType=VARCHAR}
+    where SINGER_ID_ = #{singerId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.spider.persistence.dao.MusicDao" >
+  <resultMap id="BaseResultMap" type="com.module.spider.persistence.domain.Music" >
+    <id column="MUSIC_ID_" property="musicId" jdbcType="INTEGER" />
+    <result column="SONG_ID_" property="songId" jdbcType="INTEGER" />
+    <result column="SINGER_ID_" property="singerId" jdbcType="INTEGER" />
+    <result column="ALBUM_ID_" property="albumId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MUSIC_ID_, SONG_ID_, SINGER_ID_, ALBUM_ID_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from spider_music
+    where MUSIC_ID_ = #{musicId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from spider_music
+    where MUSIC_ID_ = #{musicId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.module.spider.persistence.domain.Music" >
+    insert into spider_music (MUSIC_ID_, SONG_ID_, SINGER_ID_, 
+      ALBUM_ID_)
+    values (#{musicId,jdbcType=INTEGER}, #{songId,jdbcType=INTEGER}, #{singerId,jdbcType=INTEGER}, 
+      #{albumId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.module.spider.persistence.domain.Music" >
+    insert into spider_music
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="musicId != null" >
+        MUSIC_ID_,
+      </if>
+      <if test="songId != null" >
+        SONG_ID_,
+      </if>
+      <if test="singerId != null" >
+        SINGER_ID_,
+      </if>
+      <if test="albumId != null" >
+        ALBUM_ID_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="musicId != null" >
+        #{musicId,jdbcType=INTEGER},
+      </if>
+      <if test="songId != null" >
+        #{songId,jdbcType=INTEGER},
+      </if>
+      <if test="singerId != null" >
+        #{singerId,jdbcType=INTEGER},
+      </if>
+      <if test="albumId != null" >
+        #{albumId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.module.spider.persistence.domain.Music" >
+    update spider_music
+    <set >
+      <if test="songId != null" >
+        SONG_ID_ = #{songId,jdbcType=INTEGER},
+      </if>
+      <if test="singerId != null" >
+        SINGER_ID_ = #{singerId,jdbcType=INTEGER},
+      </if>
+      <if test="albumId != null" >
+        ALBUM_ID_ = #{albumId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where MUSIC_ID_ = #{musicId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.module.spider.persistence.domain.Music" >
+    update spider_music
+    set SONG_ID_ = #{songId,jdbcType=INTEGER},
+      SINGER_ID_ = #{singerId,jdbcType=INTEGER},
+      ALBUM_ID_ = #{albumId,jdbcType=INTEGER}
+    where MUSIC_ID_ = #{musicId,jdbcType=INTEGER}
+  </update>
+</mapper>

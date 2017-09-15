@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.spider.persistence.dao.AlbumDao" >
+  <resultMap id="BaseResultMap" type="com.module.spider.persistence.domain.Album" >
+    <id column="ALBUM_ID_" property="albumId" jdbcType="INTEGER" />
+    <result column="ALBUM_TITLE_" property="albumTitle" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ALBUM_ID_, ALBUM_TITLE_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from spider_album
+    where ALBUM_ID_ = #{albumId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from spider_album
+    where ALBUM_ID_ = #{albumId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.module.spider.persistence.domain.Album" >
+    insert into spider_album (ALBUM_ID_, ALBUM_TITLE_)
+    values (#{albumId,jdbcType=INTEGER}, #{albumTitle,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.module.spider.persistence.domain.Album" >
+    insert into spider_album
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="albumId != null" >
+        ALBUM_ID_,
+      </if>
+      <if test="albumTitle != null" >
+        ALBUM_TITLE_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="albumId != null" >
+        #{albumId,jdbcType=INTEGER},
+      </if>
+      <if test="albumTitle != null" >
+        #{albumTitle,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.module.spider.persistence.domain.Album" >
+    update spider_album
+    <set >
+      <if test="albumTitle != null" >
+        ALBUM_TITLE_ = #{albumTitle,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ALBUM_ID_ = #{albumId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.module.spider.persistence.domain.Album" >
+    update spider_album
+    set ALBUM_TITLE_ = #{albumTitle,jdbcType=VARCHAR}
+    where ALBUM_ID_ = #{albumId,jdbcType=INTEGER}
+  </update>
+</mapper>

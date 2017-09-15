@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.spider.persistence.dao.SongDao" >
+  <resultMap id="BaseResultMap" type="com.module.spider.persistence.domain.Song" >
+    <id column="SONG_ID_" property="songId" jdbcType="INTEGER" />
+    <result column="SONG_REF_ID_" property="songRefId" jdbcType="VARCHAR" />
+    <result column="SONG_TITLE_" property="songTitle" jdbcType="VARCHAR" />
+    <result column="SONG_TIME_" property="songTime" jdbcType="VARCHAR" />
+    <result column="SONG_PIC_" property="songPic" jdbcType="VARCHAR" />
+    <result column="SONG_DIR_" property="songDir" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SONG_ID_, SONG_REF_ID_, SONG_TITLE_, SONG_TIME_, SONG_PIC_, SONG_DIR_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from spider_song
+    where SONG_ID_ = #{songId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from spider_song
+    where SONG_ID_ = #{songId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.module.spider.persistence.domain.Song" >
+    insert into spider_song (SONG_ID_, SONG_REF_ID_, SONG_TITLE_, 
+      SONG_TIME_, SONG_PIC_, SONG_DIR_
+      )
+    values (#{songId,jdbcType=INTEGER}, #{songRefId,jdbcType=VARCHAR}, #{songTitle,jdbcType=VARCHAR}, 
+      #{songTime,jdbcType=VARCHAR}, #{songPic,jdbcType=VARCHAR}, #{songDir,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.module.spider.persistence.domain.Song" >
+    insert into spider_song
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="songId != null" >
+        SONG_ID_,
+      </if>
+      <if test="songRefId != null" >
+        SONG_REF_ID_,
+      </if>
+      <if test="songTitle != null" >
+        SONG_TITLE_,
+      </if>
+      <if test="songTime != null" >
+        SONG_TIME_,
+      </if>
+      <if test="songPic != null" >
+        SONG_PIC_,
+      </if>
+      <if test="songDir != null" >
+        SONG_DIR_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="songId != null" >
+        #{songId,jdbcType=INTEGER},
+      </if>
+      <if test="songRefId != null" >
+        #{songRefId,jdbcType=VARCHAR},
+      </if>
+      <if test="songTitle != null" >
+        #{songTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="songTime != null" >
+        #{songTime,jdbcType=VARCHAR},
+      </if>
+      <if test="songPic != null" >
+        #{songPic,jdbcType=VARCHAR},
+      </if>
+      <if test="songDir != null" >
+        #{songDir,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.module.spider.persistence.domain.Song" >
+    update spider_song
+    <set >
+      <if test="songRefId != null" >
+        SONG_REF_ID_ = #{songRefId,jdbcType=VARCHAR},
+      </if>
+      <if test="songTitle != null" >
+        SONG_TITLE_ = #{songTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="songTime != null" >
+        SONG_TIME_ = #{songTime,jdbcType=VARCHAR},
+      </if>
+      <if test="songPic != null" >
+        SONG_PIC_ = #{songPic,jdbcType=VARCHAR},
+      </if>
+      <if test="songDir != null" >
+        SONG_DIR_ = #{songDir,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SONG_ID_ = #{songId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.module.spider.persistence.domain.Song" >
+    update spider_song
+    set SONG_REF_ID_ = #{songRefId,jdbcType=VARCHAR},
+      SONG_TITLE_ = #{songTitle,jdbcType=VARCHAR},
+      SONG_TIME_ = #{songTime,jdbcType=VARCHAR},
+      SONG_PIC_ = #{songPic,jdbcType=VARCHAR},
+      SONG_DIR_ = #{songDir,jdbcType=VARCHAR}
+    where SONG_ID_ = #{songId,jdbcType=INTEGER}
+  </update>
+</mapper>
