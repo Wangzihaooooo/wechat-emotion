@@ -21,14 +21,14 @@
         <td>工资</td>
     </tr>
     <%--遍历lstUsers集合中的User对象--%>
-    <c:forEach var="user" items="${userList}">
-        <tr>
-            <td>${user.userId}</td>
-            <td>${user.fullname}</td>
-            <td>${user.createTime}</td>
-            <td>${user.account}</td>
-        </tr>
-    </c:forEach>
+
+    <tr>
+        <td>${user.userId}</td>
+        <td>${user.fullname}</td>
+        <td>${user.createTime}</td>
+        <td>${user.account}</td>
+    </tr>
+
 </table>
 </body>
 </html>

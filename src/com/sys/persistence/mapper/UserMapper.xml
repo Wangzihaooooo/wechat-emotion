@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sys.persistence.dao.UserDao" >
   <resultMap id="BaseResultMap" type="com.sys.persistence.domain.User" >
-    <id column="USER_ID_" property="userId" jdbcType="VARCHAR" />
+    <id column="USER_ID_" property="userId" jdbcType="INTEGER" />
     <result column="FULLNAME_" property="fullname" jdbcType="VARCHAR" />
     <result column="ACCOUNT_" property="account" jdbcType="VARCHAR" />
     <result column="PASSWORD_" property="password" jdbcType="VARCHAR" />
@@ -20,18 +20,15 @@
     USER_ID_, FULLNAME_, ACCOUNT_, PASSWORD_, EMAIL_, MOBILE_, WEIXIN_, CREATE_TIME_, 
     PHOTO_, SEX_, AGE_, LIMIT_, USER_TYPE_
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from sys_user
-    where USER_ID_ = #{userId,jdbcType=VARCHAR}
+    where USER_ID_ = #{userId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap"  >
-    select * from sys_user
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sys_user
-    where USER_ID_ = #{userId,jdbcType=VARCHAR}
+    where USER_ID_ = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.sys.persistence.domain.User" >
     insert into sys_user (USER_ID_, FULLNAME_, ACCOUNT_, 
@@ -39,7 +36,7 @@
       WEIXIN_, CREATE_TIME_, PHOTO_, 
       SEX_, AGE_, LIMIT_, USER_TYPE_
       )
-    values (#{userId,jdbcType=VARCHAR}, #{fullname,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+    values (#{userId,jdbcType=INTEGER}, #{fullname,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
       #{weixin,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, 
       #{sex,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}, #{userType,jdbcType=INTEGER}
@@ -90,7 +87,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="fullname != null" >
         #{fullname,jdbcType=VARCHAR},
@@ -170,7 +167,7 @@
         USER_TYPE_ = #{userType,jdbcType=INTEGER},
       </if>
     </set>
-    where USER_ID_ = #{userId,jdbcType=VARCHAR}
+    where USER_ID_ = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.sys.persistence.domain.User" >
     update sys_user
@@ -186,6 +183,6 @@
       AGE_ = #{age,jdbcType=INTEGER},
       LIMIT_ = #{limit,jdbcType=INTEGER},
       USER_TYPE_ = #{userType,jdbcType=INTEGER}
-    where USER_ID_ = #{userId,jdbcType=VARCHAR}
+    where USER_ID_ = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

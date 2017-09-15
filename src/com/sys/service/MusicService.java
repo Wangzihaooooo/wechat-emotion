@@ -1,6 +1,6 @@
 package com.sys.service;
 
-import com.sys.persistence.domain.Music;
+import com.module.spider.persistence.domain.Music;
 
 /**
  * description:
@@ -14,13 +14,7 @@ public interface MusicService {
      * @param songId the song id
      * @return the musice by id
      */
-    Music getMusiceById(String songId);
+    Music getMusiceById(int songId);
 
-    /**
-     * Gets musice by tag.
-     *
-     * @param songTag the song tag
-     * @return the musice by tag
-     */
-    Music getMusiceByTag(String songTag);
+
 }

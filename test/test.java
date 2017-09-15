@@ -1,4 +1,5 @@
-import com.sys.persistence.dao.MusicDao;
+import com.module.spider.persistence.dao.MusicDao;
+import com.module.spider.persistence.domain.Music;
 import com.sys.persistence.domain.User;
 import com.sys.service.Impl.UserServiceImpl;
 import org.apache.log4j.Logger;
@@ -21,8 +22,8 @@ public class test {
     static Logger log = Logger.getLogger(test.class.getName());
     @Test
     public void selectAll() {
-        List<User> userList = userService.getAllUser();
-        log.info(userList.get(0));
-        log.info(musicDao.selectByPrimaryKey("1"));
+        User user = userService.getUserById(new Integer(1));
+        Music music=musicDao.selectByPrimaryKey(new Integer(1));
+        log.info(user);
     }
 }

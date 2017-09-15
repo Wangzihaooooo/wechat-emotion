@@ -3,28 +3,28 @@ package com.sys.persistence.domain;
 import java.util.Date;
 
 public class Speech {
-    private String speechId;
+    private Integer speechId;
 
-    private String userId;
+    private Integer userId;
 
     private Date date;
 
     private String speechDir;
 
-    public String getSpeechId() {
+    public Integer getSpeechId() {
         return speechId;
     }
 
-    public void setSpeechId(String speechId) {
-        this.speechId = speechId == null ? null : speechId.trim();
+    public void setSpeechId(Integer speechId) {
+        this.speechId = speechId;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Date getDate() {

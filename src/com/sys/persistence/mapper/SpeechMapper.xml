@@ -2,28 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sys.persistence.dao.SpeechDao" >
   <resultMap id="BaseResultMap" type="com.sys.persistence.domain.Speech" >
-    <id column="SPEECH_ID_" property="speechId" jdbcType="VARCHAR" />
-    <result column="USER_ID_" property="userId" jdbcType="VARCHAR" />
+    <id column="SPEECH_ID_" property="speechId" jdbcType="INTEGER" />
+    <result column="USER_ID_" property="userId" jdbcType="INTEGER" />
     <result column="DATE_" property="date" jdbcType="TIMESTAMP" />
     <result column="SPEECH_DIR_" property="speechDir" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     SPEECH_ID_, USER_ID_, DATE_, SPEECH_DIR_
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from sys_speech
-    where SPEECH_ID_ = #{speechId,jdbcType=VARCHAR}
+    where SPEECH_ID_ = #{speechId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sys_speech
-    where SPEECH_ID_ = #{speechId,jdbcType=VARCHAR}
+    where SPEECH_ID_ = #{speechId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.sys.persistence.domain.Speech" >
     insert into sys_speech (SPEECH_ID_, USER_ID_, DATE_, 
       SPEECH_DIR_)
-    values (#{speechId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, 
+    values (#{speechId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, 
       #{speechDir,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.sys.persistence.domain.Speech" >
@@ -44,10 +44,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="speechId != null" >
-        #{speechId,jdbcType=VARCHAR},
+        #{speechId,jdbcType=INTEGER},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="date != null" >
         #{date,jdbcType=TIMESTAMP},
@@ -61,7 +61,7 @@
     update sys_speech
     <set >
       <if test="userId != null" >
-        USER_ID_ = #{userId,jdbcType=VARCHAR},
+        USER_ID_ = #{userId,jdbcType=INTEGER},
       </if>
       <if test="date != null" >
         DATE_ = #{date,jdbcType=TIMESTAMP},
@@ -70,13 +70,13 @@
         SPEECH_DIR_ = #{speechDir,jdbcType=VARCHAR},
       </if>
     </set>
-    where SPEECH_ID_ = #{speechId,jdbcType=VARCHAR}
+    where SPEECH_ID_ = #{speechId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.sys.persistence.domain.Speech" >
     update sys_speech
-    set USER_ID_ = #{userId,jdbcType=VARCHAR},
+    set USER_ID_ = #{userId,jdbcType=INTEGER},
       DATE_ = #{date,jdbcType=TIMESTAMP},
       SPEECH_DIR_ = #{speechDir,jdbcType=VARCHAR}
-    where SPEECH_ID_ = #{speechId,jdbcType=VARCHAR}
+    where SPEECH_ID_ = #{speechId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -3,7 +3,7 @@ package com.sys.persistence.domain;
 import java.util.Date;
 
 public class User {
-    private String userId;
+    private Integer userId;
 
     private String fullname;
 
@@ -29,12 +29,12 @@ public class User {
 
     private Integer userType;
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getFullname() {
@@ -131,24 +131,5 @@ public class User {
 
     public void setUserType(Integer userType) {
         this.userType = userType;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId='" + userId + '\'' +
-                ", fullname='" + fullname + '\'' +
-                ", account='" + account + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", weixin='" + weixin + '\'' +
-                ", createTime=" + createTime +
-                ", photo='" + photo + '\'' +
-                ", sex='" + sex + '\'' +
-                ", age=" + age +
-                ", limit=" + limit +
-                ", userType=" + userType +
-                '}';
     }
 }

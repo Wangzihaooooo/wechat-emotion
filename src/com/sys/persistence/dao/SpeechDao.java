@@ -3,13 +3,13 @@ package com.sys.persistence.dao;
 import com.sys.persistence.domain.Speech;
 
 public interface SpeechDao {
-    int deleteByPrimaryKey(String speechId);
+    int deleteByPrimaryKey(Integer speechId);
 
     int insert(Speech record);
 
     int insertSelective(Speech record);
 
-    Speech selectByPrimaryKey(String speechId);
+    Speech selectByPrimaryKey(Integer speechId);
 
     int updateByPrimaryKeySelective(Speech record);
 

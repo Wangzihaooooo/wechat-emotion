@@ -16,10 +16,6 @@ public interface UserService {
      * @param userId
      * @return
      */
-    User getUserById(String userId);
+    User getUserById(int userId);
 
-    /**获取所有用户信息
-     * @return List<User>
-     */
-    List<User> getAllUser();
 }

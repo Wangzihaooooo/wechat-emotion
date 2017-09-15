@@ -11,7 +11,7 @@
 
     <!-- 自动扫描base-package下面的包和子包下面的java文件，实现支持注解的IOC
     如果扫描到spring相关注释的类，则把这些类注册为spring的bean-->
-    <context:component-scan base-package="com.sys.**" />
+    <context:component-scan base-package="com.**" />
 
     <!--设置注解驱动配置方案，相当于注册了默认处理映射器DefaultAnnotationHandlerMapping和
     默认处理器适配器AnnotationMethodHandlerAdapter两个bean，配置一些messageconverter。-->

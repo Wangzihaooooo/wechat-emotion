@@ -51,10 +51,18 @@
     typeAliasesPackage：指定实体类的包名，自动实体类的简单类名映射成别名-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.sys.persistence.domain"/>
+        <!--typeAliasesPackage 默认只能扫描某一个路径下，或以逗号等分割的 几个路径下的内容，不支持通配符和正则，采用重写的方式解决-->
+        <property name="typeAliasesPackage" value="com.sys.persistence.domain,
+        com.module.spider.persistence.domain,com.module.recognition.persistence.domain"/>
         <!-- 当mybatis的xml文件和mapper接口不在相同包下时，需要用mapperLocations属性指定xml文件的路径。
         *是个通配符，代表所有的文件，**代表所有目录下 -->
-        <property name="mapperLocations" value="classpath*:com/sys/persistence/mapper/**/*.xml" />
+        <property name="mapperLocations">
+            <array>
+                <value>classpath:com/sys/persistence/mapper/**/*.xml</value>
+                <value>classpath:com/module/recognition/persistence/mapper/**/*.xml</value>
+                <value>classpath:com/module/spider/persistence/mapper/**/*.xml</value>
+            </array>
+        </property>
     </bean>
     <!-- 3. mybatis 自动扫描加载 Sql 映射文件 : MapperScannerConfigurer
     basePackage：指定sql映射接口类所在的包（自动扫描）,如果它们在SQL映射文件中定义过，则将它们动态定义为一个Spring Bean，这样我们在Service就可直接注入映射接口的bean
@@ -62,7 +70,8 @@
     MapperFactoryBean配置有一个很大的缺点，就是系统有很多的配置文件时 全部需要手动编写，所以上述的方式已经不用了。
     没有必要在 Spring 的 XML 配置文件中注册所有的映射器。相反,你可以使用一个 MapperScannerConfigurer , 它将会查找类路径下的映射器并自动将它们创建成MapperFactoryBean。-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.sys.persistence.dao"/>
+        <property name="basePackage" value="com.sys.persistence.dao,
+        com.module.spider.persistence.dao,com.module.recognition.persistence.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
     <!-- 4. 事务管理 : DataSourceTransactionManager
