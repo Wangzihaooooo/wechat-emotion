@@ -1,4 +1,5 @@
 package com.sys.controller;
+import com.module.spider.persistence.dao.MusicDao;
 import com.sys.persistence.domain.User;
 import com.sys.service.Impl.UserServiceImpl;
 import com.sys.service.UserService;
@@ -19,13 +20,12 @@ public class UserController {
     //处理业务逻辑的userService
     @Resource
     private UserService userService;
+    @Resource
 
-    @RequestMapping("/getAllUser")
     public String  getAllUser(HttpServletRequest request){
         //获取所有的用户信息
         User user = userService.getUserById(new Integer(1));
         request.setAttribute("user", user);
-        log.info(user);
         return "user";
     }
 

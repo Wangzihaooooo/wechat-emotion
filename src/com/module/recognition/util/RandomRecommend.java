@@ -1,4 +1,4 @@
-package com.module.recognition;
+package com.module.recognition.util;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,5 @@
 package com.module.spider.persistence.domain;
 
-import org.springframework.stereotype.Repository;
-
 public class Music {
     private Integer musicId;
 

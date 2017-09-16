@@ -3,11 +3,7 @@ package com.module.spider.persistence.domain;
 public class Song {
     private Integer songId;
 
-    private String songRefId;
-
     private String songTitle;
-
-    private String songTime;
 
     private String songPic;
 
@@ -21,28 +17,12 @@ public class Song {
         this.songId = songId;
     }
 
-    public String getSongRefId() {
-        return songRefId;
-    }
-
-    public void setSongRefId(String songRefId) {
-        this.songRefId = songRefId == null ? null : songRefId.trim();
-    }
-
     public String getSongTitle() {
         return songTitle;
     }
 
     public void setSongTitle(String songTitle) {
         this.songTitle = songTitle == null ? null : songTitle.trim();
-    }
-
-    public String getSongTime() {
-        return songTime;
-    }
-
-    public void setSongTime(String songTime) {
-        this.songTime = songTime == null ? null : songTime.trim();
     }
 
     public String getSongPic() {
