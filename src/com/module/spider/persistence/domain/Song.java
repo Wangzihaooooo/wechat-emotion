@@ -40,4 +40,14 @@ public class Song {
     public void setSongDir(String songDir) {
         this.songDir = songDir == null ? null : songDir.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "songId=" + songId +
+                ", songTitle='" + songTitle + '\'' +
+                ", songPic='" + songPic + '\'' +
+                ", songDir='" + songDir + '\'' +
+                '}';
+    }
 }

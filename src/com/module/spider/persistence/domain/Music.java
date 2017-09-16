@@ -40,4 +40,14 @@ public class Music {
     public void setAlbumId(Integer albumId) {
         this.albumId = albumId;
     }
+
+    @Override
+    public String toString() {
+        return "Music{" +
+                "musicId=" + musicId +
+                ", songId=" + songId +
+                ", singerId=" + singerId +
+                ", albumId=" + albumId +
+                '}';
+    }
 }

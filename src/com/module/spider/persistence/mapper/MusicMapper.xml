@@ -10,6 +10,21 @@
   <sql id="Base_Column_List" >
     MUSIC_ID_, SONG_ID_, SINGER_ID_, ALBUM_ID_
   </sql>
+    <select id="selectBySongIdList" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from spider_music
+        where SONG_ID_ in
+        <foreach collection="songIdList" item="songId" index="index" open="(" separator="," close=")" >
+        #{songId,jdbcType=INTEGER}
+        </foreach>
+    </select>
+  <select id="selectBySongId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from spider_music
+    where SONG_ID_ = #{songId,jdbcType=INTEGER}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

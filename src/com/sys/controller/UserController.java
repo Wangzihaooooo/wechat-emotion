@@ -20,8 +20,8 @@ public class UserController {
     //处理业务逻辑的userService
     @Resource
     private UserService userService;
-    @Resource
 
+    @RequestMapping("/getAllUser")
     public String  getAllUser(HttpServletRequest request){
         //获取所有的用户信息
         User user = userService.getUserById(new Integer(1));

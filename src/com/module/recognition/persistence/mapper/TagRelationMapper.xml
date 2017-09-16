@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.recognition.persistence.dao.TagRelationDao" >
+    <select id="selectMusicListByTag" resultType="java.lang.Integer" >
+        drop table if exists tmp_table;
+        CREATE TEMPORARY TABLE tmp_table (
+        `RECORD_ID_` int(8) NOT NULL AUTO_INCREMENT,
+        `TAG_ID_` int(8) NOT NULL,
+        `SONG_ID_` int(8) NOT NULL,
+        PRIMARY KEY (`RECORD_ID_`));
+        insert into tmp_table(TAG_ID_,SONG_ID_) SELECT TAG_ID_,SONG_ID_ FROM recg_tag_relation
+        where TAG_ID_=#{tagId,jdbcType=INTEGER};
+        SELECT SONG_ID_ from tmp_table order by rand() limit #{count,jdbcType=INTEGER};
+        DROP TEMPORARY TABLE tmp_table;
+    </select>
+</mapper>
