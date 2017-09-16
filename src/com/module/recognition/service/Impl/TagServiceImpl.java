@@ -16,10 +16,5 @@ public class TagServiceImpl implements TagService{
     @Resource
     private TagDao tagDao;
 
-    @Override
-    public int getSongSumByTag(int tagKey) {
-        Tag tag=tagDao.selectByPrimaryKey(tagKey);
-        return tag.getSongSum();
 
-    }
 }

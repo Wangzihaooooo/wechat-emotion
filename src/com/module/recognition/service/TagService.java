@@ -8,10 +8,5 @@ import com.module.recognition.persistence.domain.Tag;
  */
 public interface TagService {
 
-    /**
-     * Gets song sum by tag.
-     *
-     * @return the song sum by tag
-     */
-    int getSongSumByTag(int tagKey);
+
 }

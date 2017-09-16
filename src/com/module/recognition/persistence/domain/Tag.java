@@ -5,8 +5,6 @@ public class Tag {
 
     private String tagContext;
 
-    private Integer songSum;
-
     public Integer getTagId() {
         return tagId;
     }
@@ -23,11 +21,4 @@ public class Tag {
         this.tagContext = tagContext == null ? null : tagContext.trim();
     }
 
-    public Integer getSongSum() {
-        return songSum;
-    }
-
-    public void setSongSum(Integer songSum) {
-        this.songSum = songSum;
-    }
 }

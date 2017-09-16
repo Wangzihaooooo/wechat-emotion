@@ -4,10 +4,9 @@
   <resultMap id="BaseResultMap" type="com.module.recognition.persistence.domain.Tag" >
     <id column="TAG_ID_" property="tagId" jdbcType="INTEGER" />
     <result column="TAG_CONTEXT_" property="tagContext" jdbcType="VARCHAR" />
-    <result column="SONG_SUM_" property="songSum" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    TAG_ID_, TAG_CONTEXT_, SONG_SUM_
+    TAG_ID_, TAG_CONTEXT_
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -20,9 +19,9 @@
     where TAG_ID_ = #{tagId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.module.recognition.persistence.domain.Tag" >
-    insert into recg_tag (TAG_ID_, TAG_CONTEXT_, SONG_SUM_
+    insert into recg_tag (TAG_ID_, TAG_CONTEXT_
       )
-    values (#{tagId,jdbcType=INTEGER}, #{tagContext,jdbcType=VARCHAR}, #{songSum,jdbcType=INTEGER}
+    values (#{tagId,jdbcType=INTEGER}, #{tagContext,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.module.recognition.persistence.domain.Tag" >
@@ -34,9 +33,6 @@
       <if test="tagContext != null" >
         TAG_CONTEXT_,
       </if>
-      <if test="songSum != null" >
-        SONG_SUM_,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="tagId != null" >
@@ -45,9 +41,7 @@
       <if test="tagContext != null" >
         #{tagContext,jdbcType=VARCHAR},
       </if>
-      <if test="songSum != null" >
-        #{songSum,jdbcType=INTEGER},
-      </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.module.recognition.persistence.domain.Tag" >
@@ -56,16 +50,12 @@
       <if test="tagContext != null" >
         TAG_CONTEXT_ = #{tagContext,jdbcType=VARCHAR},
       </if>
-      <if test="songSum != null" >
-        SONG_SUM_ = #{songSum,jdbcType=INTEGER},
-      </if>
     </set>
     where TAG_ID_ = #{tagId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.module.recognition.persistence.domain.Tag" >
     update recg_tag
     set TAG_CONTEXT_ = #{tagContext,jdbcType=VARCHAR},
-      SONG_SUM_ = #{songSum,jdbcType=INTEGER}
     where TAG_ID_ = #{tagId,jdbcType=INTEGER}
   </update>
 </mapper>
