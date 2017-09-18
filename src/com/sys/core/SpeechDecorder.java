@@ -15,17 +15,11 @@ import java.io.*;
 public class SpeechDecorder {
 
     private static Logger log = Logger.getLogger(SpeechDecorder.class.getName());
+    private Boolean success=false;//判断解码是否成功
 
-    /**
-     * Decode boolean.
-     *
-     * @param SilkFilePath the silk file path
-     * @param WebnFilePath the webn file path
-     * @param WavFilePath  the wav file path
-     * @return the boolean
-     */
+    //
     public Boolean decode(String SilkFilePath,String WebnFilePath,String WavFilePath){
-        Boolean success=false;
+        success=false;
         if(decodeToWebn(SilkFilePath,WebnFilePath)){
             if(decodeToWav(WebnFilePath,WavFilePath))
             {
@@ -40,9 +34,9 @@ public class SpeechDecorder {
         }
         return success;
     }
-
+    //调用Base64Util工具类来对silk进行base64解密
     private Boolean decodeToWebn(String SilkFilePath,String WebnFilePath) {
-        Boolean success=false;
+        success=false;
         try {
             String encoding = "utf-8";
             File file = new File(SilkFilePath);
@@ -50,8 +44,8 @@ public class SpeechDecorder {
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding);// 考虑到编码格式
                 BufferedReader bufferedReader = new BufferedReader(read);
                 StringBuilder lineTxt = new StringBuilder();
-                String line = null;
-                while ((line = bufferedReader.readLine()) != null) {
+                String line = bufferedReader.readLine();
+                while ( line != null) {
                     lineTxt.append(line); }
                 read.close();
 
@@ -83,9 +77,9 @@ public class SpeechDecorder {
         }
         return success;
     }
-
+    //调用配置了系统环境path的FFmpeg的工具来进行解码
     private Boolean decodeToWav(String WebnFilePath,String WavFilePath){
-        Boolean success=false;
+        success=false;
         try {
             String path="ffmpeg -i "+WebnFilePath+" -f wav "+WavFilePath ;
             Process ps = Runtime.getRuntime().exec(path);
