@@ -9,7 +9,11 @@ public class Speech {
 
     private Date date;
 
-    private String speechDir;
+    private String silkPath;
+
+    private String webnPath;
+
+    private String wavPath;
 
     public Integer getSpeechId() {
         return speechId;
@@ -35,11 +39,27 @@ public class Speech {
         this.date = date;
     }
 
-    public String getSpeechDir() {
-        return speechDir;
+    public String getSilkPath() {
+        return silkPath;
     }
 
-    public void setSpeechDir(String speechDir) {
-        this.speechDir = speechDir == null ? null : speechDir.trim();
+    public void setSilkPath(String silkPath) {
+        this.silkPath = silkPath == null ? null : silkPath.trim();
+    }
+
+    public String getWebnPath() {
+        return webnPath;
+    }
+
+    public void setWebnPath(String webnPath) {
+        this.webnPath = webnPath == null ? null : webnPath.trim();
+    }
+
+    public String getWavPath() {
+        return wavPath;
+    }
+
+    public void setWavPath(String wavPath) {
+        this.wavPath = wavPath == null ? null : wavPath.trim();
     }
 }

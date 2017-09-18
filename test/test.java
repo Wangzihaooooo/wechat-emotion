@@ -1,8 +1,9 @@
-import com.module.recognition.core.SpeechDecorder;
+import com.sys.core.SpeechDecorder;
 import com.module.recognition.service.TagRelationService;
 import com.module.recognition.service.TagService;
 import com.module.spider.service.MusicService;
 import com.sys.service.UserService;
+import com.sys.util.PropertyUtil;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,10 +28,11 @@ public class test {
     SpeechDecorder speechDecorder;
     @Test
     public void select() {
-        speechDecorder.decode("C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\201.silk",
+        log.info( PropertyUtil.getProperty("jdbc.url"));
+        /*speechDecorder.decode("C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\201.silk",
                 "C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\202.webn",
-                "C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\201.wav");
-        log.info(musicService.getMusicListBySongId(tagRelationService.selectMusicListByTag(1,5)));
+                "C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\201.wav");*/
+        //log.info(musicService.getMusicListBySongId(tagRelationService.selectMusicListByTag(1,5)));
         //log.info(tagRelationDao.selectMusicListByTag(2,5).get(0));
         //log.info(recommendMusic.getMusicGroup(1,10).get(1));
     }

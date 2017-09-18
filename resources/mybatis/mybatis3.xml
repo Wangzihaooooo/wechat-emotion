@@ -38,7 +38,7 @@
     这4个BeanPostProcessor.注册这4个bean处理器主要的作用是为了你的系统能够识别相应的注解。-->
 
     <!--引入jdbc配置文件,整个项目只允许存在一个property-placeholder，否则会重写-->
-    <context:property-placeholder location="classpath:sys/db-config.properties"/>
+    <context:property-placeholder location="classpath:sys/db-config.properties" />
     <!-- 1. 数据源 : DriverManagerDataSource -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driver.mysql6}"/>

@@ -1,4 +1,4 @@
-package com.module.recognition.util;
+package com.sys.util;
 
 /**
  * description:

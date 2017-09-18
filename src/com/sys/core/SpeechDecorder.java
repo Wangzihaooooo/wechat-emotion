@@ -1,6 +1,6 @@
-package com.module.recognition.core;
+package com.sys.core;
 
-import com.module.recognition.util.Base64Util;
+import com.sys.util.Base64Util;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 

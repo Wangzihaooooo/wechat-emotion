@@ -5,10 +5,12 @@
     <id column="SPEECH_ID_" property="speechId" jdbcType="INTEGER" />
     <result column="USER_ID_" property="userId" jdbcType="INTEGER" />
     <result column="DATE_" property="date" jdbcType="TIMESTAMP" />
-    <result column="SPEECH_DIR_" property="speechDir" jdbcType="VARCHAR" />
+    <result column="SILK_PATH_" property="silkPath" jdbcType="VARCHAR" />
+    <result column="WEBN_PATH_" property="webnPath" jdbcType="VARCHAR" />
+    <result column="WAV_PATH_" property="wavPath" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    SPEECH_ID_, USER_ID_, DATE_, SPEECH_DIR_
+    SPEECH_ID_, USER_ID_, DATE_, SILK_PATH_, WEBN_PATH_, WAV_PATH_
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -16,15 +18,23 @@
     from sys_speech
     where SPEECH_ID_ = #{speechId,jdbcType=INTEGER}
   </select>
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_speech
+    where USER_ID_ = #{userId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sys_speech
     where SPEECH_ID_ = #{speechId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.sys.persistence.domain.Speech" >
     insert into sys_speech (SPEECH_ID_, USER_ID_, DATE_, 
-      SPEECH_DIR_)
+      SILK_PATH_, WEBN_PATH_, WAV_PATH_
+      )
     values (#{speechId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, 
-      #{speechDir,jdbcType=VARCHAR})
+      #{silkPath,jdbcType=VARCHAR}, #{webnPath,jdbcType=VARCHAR}, #{wavPath,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.sys.persistence.domain.Speech" >
     insert into sys_speech
@@ -38,8 +48,14 @@
       <if test="date != null" >
         DATE_,
       </if>
-      <if test="speechDir != null" >
-        SPEECH_DIR_,
+      <if test="silkPath != null" >
+        SILK_PATH_,
+      </if>
+      <if test="webnPath != null" >
+        WEBN_PATH_,
+      </if>
+      <if test="wavPath != null" >
+        WAV_PATH_,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -52,8 +68,14 @@
       <if test="date != null" >
         #{date,jdbcType=TIMESTAMP},
       </if>
-      <if test="speechDir != null" >
-        #{speechDir,jdbcType=VARCHAR},
+      <if test="silkPath != null" >
+        #{silkPath,jdbcType=VARCHAR},
+      </if>
+      <if test="webnPath != null" >
+        #{webnPath,jdbcType=VARCHAR},
+      </if>
+      <if test="wavPath != null" >
+        #{wavPath,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -66,8 +88,14 @@
       <if test="date != null" >
         DATE_ = #{date,jdbcType=TIMESTAMP},
       </if>
-      <if test="speechDir != null" >
-        SPEECH_DIR_ = #{speechDir,jdbcType=VARCHAR},
+      <if test="silkPath != null" >
+        SILK_PATH_ = #{silkPath,jdbcType=VARCHAR},
+      </if>
+      <if test="webnPath != null" >
+        WEBN_PATH_ = #{webnPath,jdbcType=VARCHAR},
+      </if>
+      <if test="wavPath != null" >
+        WAV_PATH_ = #{wavPath,jdbcType=VARCHAR},
       </if>
     </set>
     where SPEECH_ID_ = #{speechId,jdbcType=INTEGER}
@@ -76,7 +104,9 @@
     update sys_speech
     set USER_ID_ = #{userId,jdbcType=INTEGER},
       DATE_ = #{date,jdbcType=TIMESTAMP},
-      SPEECH_DIR_ = #{speechDir,jdbcType=VARCHAR}
+      SILK_PATH_ = #{silkPath,jdbcType=VARCHAR},
+      WEBN_PATH_ = #{webnPath,jdbcType=VARCHAR},
+      WAV_PATH_ = #{wavPath,jdbcType=VARCHAR}
     where SPEECH_ID_ = #{speechId,jdbcType=INTEGER}
   </update>
 </mapper>

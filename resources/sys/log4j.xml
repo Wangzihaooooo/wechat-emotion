@@ -11,7 +11,7 @@
     <appender name="File" class="org.apache.log4j.DailyRollingFileAppender">
         <errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
         <!-- 日志文件位置 -->
-        <param name="File" value="F://idea/weixin/webapp/WEB-INF/log/sys.log" />
+        <param name="File" value="WEB-INF/log/sys.log" />
         <!-- 是否在重新启动服务时，在原有的基础上追加日志 -->
         <param name="Append" value="true" />
         <param name="DatePattern" value="'.'yyyy-MM-dd" />
