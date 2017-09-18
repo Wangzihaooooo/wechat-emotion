@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * description:
+ * description:根据标签id随机选取推荐指定数目的音乐
  * Created on 2017/9/16 11:07
  **/
 
@@ -25,6 +25,13 @@ public class RecommendMusic {
     @Resource
     private MusicService       musicService;
 
+    /**
+     * Get music group list.
+     *
+     * @param tagKey the tag key
+     * @param count  the count
+     * @return the list
+     */
     public List<Music> getMusicGroup(int tagKey, int count){
         //从数据库中随机获取tagkey标签共count首歌曲的songId
         List<Integer> integerList=tagRelationService.selectMusicListByTag(tagKey,count);
@@ -32,4 +39,11 @@ public class RecommendMusic {
         List<Music> musicList=musicService.getMusicListBySongId(integerList);
         return musicList;
     }
+    /**
+     * 获取wav文件 并返回路径
+     * @param wavFileName
+     * @return
+     * @throws Exception
+     */
+
 }

@@ -230,7 +230,15 @@ exclusion:是将B从依赖树中删除，如上配置，alibaba.apollo.webx不�
       <artifactId>fastjson</artifactId>
       <version>1.2.38</version>
     </dependency>
+
+    <!--java ssh-->
+    <dependency>
+      <groupId>com.jcraft</groupId>
+      <artifactId>jsch</artifactId>
+      <version>0.1.54</version>
+    </dependency>
   </dependencies>
+
 
     <build>
 
