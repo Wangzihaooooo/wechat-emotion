@@ -5,9 +5,9 @@ import java.util.Date;
 public class User {
     private Integer userId;
 
-    private String fullname;
+    private String fullname;//账号名
 
-    private String account;
+    private String account;//账号
 
     private String password;
 
