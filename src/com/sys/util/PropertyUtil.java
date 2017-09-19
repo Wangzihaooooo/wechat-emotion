@@ -10,23 +10,20 @@ import java.util.Properties;
  **/
 public class PropertyUtil {
     private static final Logger logger = LoggerFactory.getLogger(PropertyUtil.class);
+    private static String propertyName;//配置文件的文件名
     private static Properties props;
-    static{
-        loadProps();
-    }
-
-    synchronized static private void loadProps(){
-        logger.info("开始加载properties文件内容.......");
-        props = new Properties();
+    synchronized static private void loadProps(Properties properties,String propertyName){
+        logger.info(propertyName+"开始文件内容.......");
+        props=properties;
         InputStream in = null;
         try {
             //第一种，通过类加载器进行获取properties文件流
-            in = PropertyUtil.class.getClassLoader().getResourceAsStream("db-config.properties");
+            in = PropertyUtil.class.getClassLoader().getResourceAsStream(propertyName);
             //第二种，通过类进行获取properties文件流
             //in = PropertyUtil.class.getResourceAsStream("/db-config.properties");
             props.load(in);
         } catch (FileNotFoundException e) {
-            logger.error("jdbc.properties文件未找到");
+            logger.error(propertyName+"文件未找到");
         } catch (IOException e) {
             logger.error("出现IOException");
         } finally {
@@ -35,24 +32,16 @@ public class PropertyUtil {
                     in.close();
                 }
             } catch (IOException e) {
-                logger.error("jdbc.properties文件流关闭出现异常");
+                logger.error(propertyName+"文件流关闭出现异常");
             }
         }
-        logger.info("加载properties文件内容完成...........");
-        logger.info("properties文件内容：" + props);
+        logger.info(propertyName+"加载内容完成...........");
     }
 
-    public static String getProperty(String key){
-        if(null == props) {
-            loadProps();
-        }
+    public static String getProperty(String propertyName,String key){
+        Properties properties=new Properties();
+        loadProps(properties,propertyName);
         return props.getProperty(key);
     }
 
-    public static String getProperty(String key, String defaultValue) {
-        if(null == props) {
-            loadProps();
-        }
-        return props.getProperty(key, defaultValue);
-    }
 }

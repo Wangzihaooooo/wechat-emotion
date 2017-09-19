@@ -36,11 +36,12 @@ public class test {
     private SpeechDecorder speechDecorder;
     @Test
     public void select() {
-        log.info( PropertyUtil.getProperty("jdbc.url"));
-        speechDecorder.decode("C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\201.silk",
+        log.info( PropertyUtil.getProperty("db-config.properties","jdbc.url"));
+        log.info(PropertyUtil.getProperty("filePath.properties","silk.path"));
+        /*speechDecorder.decode("C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\201.silk",
                 "C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\202.webn",
                 "C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\201.wav");
-        //log.info(musicService.getMusicListBySongId(tagRelationService.selectMusicListByTag(1,5)));
+        //log.info(musicService.getMusicListBySongId(tagRelationService.selectMusicListByTag(1,5)));*/
         //log.info(tagRelationDao.selectMusicListByTag(2,5).get(0));
         //log.info(recommendMusic.getMusicGroup(1,10).get(1));
     }
