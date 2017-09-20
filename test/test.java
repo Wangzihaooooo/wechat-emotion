@@ -1,4 +1,4 @@
-import com.sys.core.SpeechDecorder;
+import com.sys.core.SpeechDecorderService;
 import com.module.recognition.service.TagRelationService;
 import com.module.recognition.service.TagService;
 import com.module.spider.service.MusicService;
@@ -7,18 +7,13 @@ import com.sys.util.PropertyUtil;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 @RunWith(SpringJUnit4ClassRunner.class) //使用Springtest框架
 @ContextConfiguration(locations = {"/mybatis/mybatis3.xml", "/spring/springmvc.xml"}) //加载配置
@@ -31,11 +26,39 @@ public class test {
     TagRelationService tagRelationService;
     private static Logger log = Logger.getLogger(test.class.getName());
     @Resource
-    private MusicService   musicService;
+    private MusicService          musicService;
     @Resource
-    private SpeechDecorder speechDecorder;
+    private SpeechDecorderService speechDecorderService;
     @Test
     public void select() {
+        String fileName = "C:\\Users\\wangzi\\Desktop\\VoiceTest\\src\\main\\resources\\pythonCode\\voice\\201.wav";
+        String path = "C:\\Users\\wangzi\\Desktop\\VoiceTest\\src\\main\\resources\\pythonCode\\Emotion.py";
+        Runtime run = Runtime.getRuntime();
+        try {
+            // run.exec("cmd /k shutdown -s -t 3600");
+            //Process process = run.exec("python D:\\study\\idea\\VoiceTest\\src\\main\\resources\\pythonCode\\test.py");
+            Process process = run.exec("python " + path + " " + fileName);
+            InputStream in = process.getInputStream();
+            BufferedReader input = new BufferedReader(new InputStreamReader(in));
+            String line;
+            int result = 0;
+
+            while ((line = input.readLine()) != null) {
+                System.out.println(line);
+                result = Integer.parseInt(line);
+                break;
+            }
+            System.out.println(result);
+            in.close();
+            process.waitFor();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
         log.info( PropertyUtil.getProperty("db-config.properties","jdbc.url"));
         log.info(PropertyUtil.getProperty("filePath.properties","silk.path"));
         /*speechDecorder.decode("C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\201.silk",

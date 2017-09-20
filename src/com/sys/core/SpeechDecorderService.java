@@ -12,9 +12,9 @@ import java.io.*;
  * Created on 2017/9/18 19:55
  **/
 @Service
-public class SpeechDecorder {
+public class SpeechDecorderService {
 
-    private static Logger log = Logger.getLogger(SpeechDecorder.class.getName());
+    private static Logger log = Logger.getLogger(SpeechDecorderService.class.getName());
     private Boolean success=false;//判断解码是否成功
 
     //

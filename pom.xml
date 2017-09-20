@@ -243,6 +243,12 @@ exclusion:是将B从依赖树中删除，如上配置，alibaba.apollo.webx不�
           <artifactId>commons-fileupload</artifactId>
           <version>1.3.3</version>
       </dependency>
+
+    <dependency>
+      <groupId>org.python</groupId>
+      <artifactId>jython-standalone</artifactId>
+      <version>2.5.2</version>
+    </dependency>
   </dependencies>
 
 
