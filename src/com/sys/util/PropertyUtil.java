@@ -13,7 +13,6 @@ public class PropertyUtil {
     private static String propertyName;//配置文件的文件名
     private static Properties props;
     synchronized static private void loadProps(Properties properties,String propertyName){
-        logger.info(propertyName+"开始文件内容.......");
         props=properties;
         InputStream in = null;
         try {
@@ -35,7 +34,6 @@ public class PropertyUtil {
                 logger.error(propertyName+"文件流关闭出现异常");
             }
         }
-        logger.info(propertyName+"加载内容完成...........");
     }
 
     public static String getProperty(String propertyName,String key){

@@ -5,6 +5,7 @@ import wave
 import webrtcvad
 from Frame import Frame
 import time
+import os
 
 class Vad(object):
 
@@ -12,12 +13,15 @@ class Vad(object):
       self.fileName = fileName
 
    def getNewVoice(self):
+      os.path.abspath(__file__) #文件绝对路径
+
+      dir = os.path.dirname(os.path.abspath(__file__)) #文件目录绝对路径
       audio, sample_rate = self.read_wave(self.fileName)
       vad = webrtcvad.Vad(1)
       frames = self.frame_generator(30, audio, sample_rate)
       frames = list(frames)
       segments = self.vad_collector(sample_rate, 30, 300, vad, frames)
-      path = "C:\Users\wangzi\Desktop\VoiceTest\src\main\resources\pythonCode\tempVoice/" + str(time.time()) + ".wav"
+      path = dir+"\tempVoice//" + str(time.time()) + ".wav"
       self.write_wave(path, [j for [i,j] in enumerate(segments)][0], sample_rate)
       return path
 

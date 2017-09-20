@@ -21,7 +21,7 @@ public class FileUtil {
             if(!file.isEmpty()){
                 // 上传文件路径 F:\idea\weixin\target\weixin-1.0-SNAPSHOT\speech
                 //String dirPath = request.getServletContext().getRealPath("/speech/");
-                String dirPath= PropertyUtil.getProperty("filePath.properties","silk.path");
+                String dirPath= PropertyUtil.getProperty("filePath.properties","speech.path");
                 // 得到上传时的文件名
                 String filename = file.getOriginalFilename();
                 // 判断父目录的路径是否存在，如果不存在就创建一个

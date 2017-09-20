@@ -29,15 +29,20 @@ public class test {
     private MusicService          musicService;
     @Resource
     private SpeechDecorderService speechDecorderService;
+
     @Test
     public void select() {
-        String fileName = "C:\\Users\\wangzi\\Desktop\\VoiceTest\\src\\main\\resources\\pythonCode\\voice\\201.wav";
-        String path = "C:\\Users\\wangzi\\Desktop\\VoiceTest\\src\\main\\resources\\pythonCode\\Emotion.py";
+        String fileName = PropertyUtil.getProperty("filePath.properties","speech.path")+"\\201.wav";
+        String path = PropertyUtil.getProperty("filePath.properties","recognitionPy.path")+"\\Emotion.py";
+        fileName="F:\\idea\\weixin\\src\\com\\module\\recognition\\pythonCode\\voice\\201.wav";
+        path="F:\\idea\\weixin\\src\\com\\module\\recognition\\pythonCode\\Emotion.py";
+        log.info(fileName+path);
         Runtime run = Runtime.getRuntime();
         try {
             // run.exec("cmd /k shutdown -s -t 3600");
             //Process process = run.exec("python D:\\study\\idea\\VoiceTest\\src\\main\\resources\\pythonCode\\test.py");
-            Process process = run.exec("python " + path + " " + fileName);
+            String[] cmd={"python"+" "+path+" "+fileName};
+            Process process = run.exec(cmd);
             InputStream in = process.getInputStream();
             BufferedReader input = new BufferedReader(new InputStreamReader(in));
             String line;
@@ -57,10 +62,8 @@ public class test {
 
 
 
-
-
-        log.info( PropertyUtil.getProperty("db-config.properties","jdbc.url"));
-        log.info(PropertyUtil.getProperty("filePath.properties","silk.path"));
+        //log.info( PropertyUtil.getProperty("db-config.properties","jdbc.url"));
+        //log.info(PropertyUtil.getProperty("filePath.properties","speech.path"));
         /*speechDecorder.decode("C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\201.silk",
                 "C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\202.webn",
                 "C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\201.wav");
