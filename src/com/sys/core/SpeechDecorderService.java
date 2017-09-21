@@ -44,9 +44,10 @@ public class SpeechDecorderService {
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding);// 考虑到编码格式
                 BufferedReader bufferedReader = new BufferedReader(read);
                 StringBuilder lineTxt = new StringBuilder();
-                String line = bufferedReader.readLine();
-                while ( line != null) {
-                    lineTxt.append(line); }
+                String line = null;
+                while ((line = bufferedReader.readLine()) != null) {
+                    lineTxt.append(line);
+                }
                 read.close();
 
                 String olddata = lineTxt.toString();
@@ -81,7 +82,7 @@ public class SpeechDecorderService {
     private Boolean decodeToWav(String WebnFilePath,String WavFilePath){
         success=false;
         try {
-            String path="ffmpeg -i "+WebnFilePath+" -f wav "+WavFilePath ;
+            String path="ffmpeg -i "+WebnFilePath+" -ar 16000 -f wav "+WavFilePath ;
             Process ps = Runtime.getRuntime().exec(path);
             ps.waitFor();
             success=true;

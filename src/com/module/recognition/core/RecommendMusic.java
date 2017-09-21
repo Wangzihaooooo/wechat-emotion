@@ -18,7 +18,7 @@ import java.util.List;
  * description:根据标签id随机选取推荐指定数目的音乐
  * Created on 2017/9/16 11:07
  **/
-
+@Service
 public class RecommendMusic {
     @Resource
     private TagRelationService tagRelationService;

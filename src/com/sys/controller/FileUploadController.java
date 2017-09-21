@@ -2,8 +2,12 @@ package com.sys.controller;
 
 import java.io.File;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.module.recognition.core.RecognitionEmotion;
+import com.module.recognition.core.RecommendMusic;
+import com.sys.core.SpeechDecorderService;
 import com.sys.persistence.domain.Speech;
 import com.sys.persistence.domain.User;
 import com.sys.util.FileUtil;
@@ -28,11 +32,33 @@ import org.springframework.web.multipart.MultipartFile;
  **/
 @Controller
 public class FileUploadController{
-
+    @Resource
+    private SpeechDecorderService speechDecorderService;
+    @Resource
+    private RecommendMusic        recommendMusic;
+    @Resource
+    private RecognitionEmotion    recognitionEmotion;
+    @RequestMapping(value="/{formName}")
+    public String loginForm(@PathVariable String formName){
+        // 动态跳转页面
+        return formName;
+    }
     // 上传文件会自动绑定到MultipartFile中
     @RequestMapping(value="/upload",method= RequestMethod.POST)
     public String upload(HttpServletRequest request, @RequestParam("file") MultipartFile multipartFile) throws Exception{
         if(FileUtil.upload(multipartFile,"silk")){
+            // 得到上传时的文件名
+            String silkFileName=multipartFile.getOriginalFilename();
+            String webnFileName=silkFileName.replace(".silk",".webn");
+            String wavFileName=silkFileName.replace(".silk",".wav");
+            boolean decordSuccess=speechDecorderService.decode(
+                    PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+silkFileName,
+                    PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+webnFileName,
+                    PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+wavFileName);
+            if(decordSuccess){
+                int result=recognitionEmotion.recognition(wavFileName);
+                System.out.println(recommendMusic.getMusicGroup(result,10).get(1));
+            }
             return "success";
         }else {
             return "error";

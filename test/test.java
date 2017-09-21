@@ -1,3 +1,4 @@
+import com.module.recognition.core.RecognitionEmotion;
 import com.sys.core.SpeechDecorderService;
 import com.module.recognition.service.TagRelationService;
 import com.module.recognition.service.TagService;
@@ -29,10 +30,13 @@ public class test {
     private MusicService          musicService;
     @Resource
     private SpeechDecorderService speechDecorderService;
-
+    @Resource
+    private RecognitionEmotion recognitionEmotion;
     @Test
     public void select() {
-        String fileName = PropertyUtil.getProperty("filePath.properties","speech.path")+"\\201.wav";
+        //log.info(recognitionEmotion.recognition("203.wav"));
+        //log.info(recognitionEmotion.recognition("203a.wav"));
+        /*String fileName = PropertyUtil.getProperty("filePath.properties","speech.path")+"\\201.wav";
         String path = PropertyUtil.getProperty("filePath.properties","recognitionPy.path")+"\\Emotion.py";
         fileName="F:\\idea\\weixin\\src\\com\\module\\recognition\\pythonCode\\voice\\201.wav";
         path="F:\\idea\\weixin\\src\\com\\module\\recognition\\pythonCode\\Emotion.py";
@@ -58,16 +62,13 @@ public class test {
             process.waitFor();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
 
 
         //log.info( PropertyUtil.getProperty("db-config.properties","jdbc.url"));
         //log.info(PropertyUtil.getProperty("filePath.properties","speech.path"));
-        /*speechDecorder.decode("C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\201.silk",
-                "C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\202.webn",
-                "C:\\Users\\wangzi\\Desktop\\silk-v3-decoder-master\\windows\\201.wav");
-        //log.info(musicService.getMusicListBySongId(tagRelationService.selectMusicListByTag(1,5)));*/
+        //log.info(musicService.getMusicListBySongId(tagRelationService.selectMusicListByTag(1,5)));
         //log.info(tagRelationDao.selectMusicListByTag(2,5).get(0));
         //log.info(recommendMusic.getMusicGroup(1,10).get(1));
     }
