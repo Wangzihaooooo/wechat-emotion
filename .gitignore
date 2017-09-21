@@ -1,0 +1,26 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+.gitignore
+.idea/dataSources.local.xml
+.idea/workspace.xml
+src/com/module/recognition/pythonCode/Feature.pyc
+src/com/module/recognition/pythonCode/Frame.pyc
+src/com/module/recognition/pythonCode/Vad.pyc
+
+src/com/module/spider/pythonCode/music/__init__.pyc
+src/com/module/spider/pythonCode/music/items.pyc
+src/com/module/spider/pythonCode/music/pipelines.pyc
+src/com/module/spider/pythonCode/music/settings.pyc
+src/com/module/spider/pythonCode/music/spiders/__init__.pyc
+src/com/module/spider/pythonCode/music/spiders/musicSpider.pyc
+target/
+
+/resources/sys/db-config.properties
+/resources/sys/filePath.properties
