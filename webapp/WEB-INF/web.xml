@@ -6,9 +6,9 @@
          version="3.0">
     <display-name>Archetype Created Web Application</display-name>
 
-    <!-- 加载Spring配置文件 -->
+    <!-- 加载Spring配置文件     即配置spring核心监听器 -->
     <context-param>
-        <description>设置Spring加载时的配置文件位置，默认位置在spring/sys-context.xml目录下</description>
+        <description>设置Spring加载时的配置文件位置，默认位置在spring/spring4.xml目录下</description>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring/spring4.xml</param-value>
     </context-param>
@@ -17,7 +17,7 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <!-- 加载spring mvc配置文件-->
+    <!-- 加载springmvc配置文件   即定义Spring MVC的前端控制器-->
     <servlet>
         <description>设置Spring MVC 前置Servlet中心控制器 </description>
         <servlet-name>springmvc</servlet-name>

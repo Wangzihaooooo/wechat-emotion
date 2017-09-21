@@ -20,11 +20,11 @@
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/webapp/WEB-INF/web.xml" />
         </descriptors>
         <webroots>
-          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
+          <root url="file://$MODULE_DIR$/webapp" relative="/" />
         </webroots>
         <sourceRoots>
-          <root url="file://$MODULE_DIR$/resources" />
           <root url="file://$MODULE_DIR$/src" />
+          <root url="file://$MODULE_DIR$/resources" />
         </sourceRoots>
       </configuration>
     </facet>
