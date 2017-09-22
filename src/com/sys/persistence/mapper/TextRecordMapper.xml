@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sys.persistence.dao.TextRecordDao" >
+  <resultMap id="BaseResultMap" type="com.sys.persistence.domain.TextRecord" >
+    <id column="RECORD_ID_" property="recordId" jdbcType="INTEGER" />
+    <result column="USER_ID_" property="userId" jdbcType="INTEGER" />
+    <result column="MUSIC_ID_" property="musicId" jdbcType="INTEGER" />
+    <result column="DATE_" property="date" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RECORD_ID_, USER_ID_, MUSIC_ID_, DATE_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_text_record
+    where RECORD_ID_ = #{recordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_text_record
+    where RECORD_ID_ = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sys.persistence.domain.TextRecord" >
+    insert into sys_text_record (RECORD_ID_, USER_ID_, MUSIC_ID_, 
+      DATE_)
+    values (#{recordId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{musicId,jdbcType=INTEGER}, 
+      #{date,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sys.persistence.domain.TextRecord" >
+    insert into sys_text_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        RECORD_ID_,
+      </if>
+      <if test="userId != null" >
+        USER_ID_,
+      </if>
+      <if test="musicId != null" >
+        MUSIC_ID_,
+      </if>
+      <if test="date != null" >
+        DATE_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="musicId != null" >
+        #{musicId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sys.persistence.domain.TextRecord" >
+    update sys_text_record
+    <set >
+      <if test="userId != null" >
+        USER_ID_ = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="musicId != null" >
+        MUSIC_ID_ = #{musicId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        DATE_ = #{date,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RECORD_ID_ = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sys.persistence.domain.TextRecord" >
+    update sys_text_record
+    set USER_ID_ = #{userId,jdbcType=INTEGER},
+      MUSIC_ID_ = #{musicId,jdbcType=INTEGER},
+      DATE_ = #{date,jdbcType=TIMESTAMP}
+    where RECORD_ID_ = #{recordId,jdbcType=INTEGER}
+  </update>
+</mapper>

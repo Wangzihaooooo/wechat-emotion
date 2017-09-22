@@ -24,3 +24,4 @@ target/
 
 /resources/sys/db-config.properties
 /resources/sys/filePath.properties
+/src/com/module/recognition/pythonCode/tempVoice/
