@@ -1,4 +1,4 @@
-package com.module.recognition.core;
+package com.sys.core;
 
 import com.module.recognition.persistence.dao.TagRelationDao;
 import com.module.recognition.service.TagRelationService;
@@ -19,7 +19,7 @@ import java.util.List;
  * Created on 2017/9/16 11:07
  **/
 @Service
-public class RecommendMusic {
+public class RecommendMusicService {
     @Resource
     private TagRelationService tagRelationService;
     @Resource

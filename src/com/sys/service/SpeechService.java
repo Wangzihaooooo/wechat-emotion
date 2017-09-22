@@ -13,11 +13,12 @@ public interface SpeechService {
      *
      * @param speech the speech
      */
-    public void addSpeech(Speech speech);
+    public int addSpeech(Speech speech);
 
     /**
      * 根据 语音id 获取语音
      *
+     * @param speechId the speech id
      * @return the speech by speech id
      */
     public Speech getSpeechBySpeechId(Integer speechId);
@@ -25,7 +26,9 @@ public interface SpeechService {
     /**
      * 根据 用户id 获取语音
      *
+     * @param userId the user id
      * @return the speech by user id
      */
     public Speech getSpeechByUserId(Integer userId);
+
 }

@@ -16,4 +16,5 @@ public interface SpeechDao {
     int updateByPrimaryKeySelective(Speech record);
 
     int updateByPrimaryKey(Speech record);
+
 }

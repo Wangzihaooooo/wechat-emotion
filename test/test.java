@@ -1,10 +1,9 @@
-import com.module.recognition.core.RecognitionEmotion;
+import com.module.recognition.core.RecognitionEmotionService;
 import com.sys.core.SpeechDecorderService;
 import com.module.recognition.service.TagRelationService;
 import com.module.recognition.service.TagService;
 import com.module.spider.service.MusicService;
 import com.sys.service.UserService;
-import com.sys.util.PropertyUtil;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,9 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @RunWith(SpringJUnit4ClassRunner.class) //使用Springtest框架
 @ContextConfiguration(locations = {"/mybatis/mybatis3.xml", "/spring/springmvc.xml"}) //加载配置
@@ -27,15 +25,20 @@ public class test {
     TagRelationService tagRelationService;
     private static Logger log = Logger.getLogger(test.class.getName());
     @Resource
-    private MusicService          musicService;
+    private MusicService              musicService;
     @Resource
-    private SpeechDecorderService speechDecorderService;
+    private SpeechDecorderService     speechDecorderService;
     @Resource
-    private RecognitionEmotion recognitionEmotion;
+    private RecognitionEmotionService recognitionEmotionService;
     @Test
     public void select() {
-        //log.info(recognitionEmotion.recognition("203.wav"));
-        //log.info(recognitionEmotion.recognition("203a.wav"));
+        //创建一个日期对象
+        Date d=new Date();
+        System.out.println(d);
+        SimpleDateFormat sdf=new SimpleDateFormat();
+        System.out.println(sdf);
+        //log.info(recognitionEmotion.recognition("209.wav"));
+        //log.info(recognitionEmotion.recognition("209a.wav"));
         /*String fileName = PropertyUtil.getProperty("filePath.properties","speech.path")+"\\201.wav";
         String path = PropertyUtil.getProperty("filePath.properties","recognitionPy.path")+"\\Emotion.py";
         fileName="F:\\idea\\weixin\\src\\com\\module\\recognition\\pythonCode\\voice\\201.wav";

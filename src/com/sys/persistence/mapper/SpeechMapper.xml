@@ -78,6 +78,9 @@
         #{wavPath,jdbcType=VARCHAR},
       </if>
     </trim>
+      <selectKey keyProperty="speechId" resultType="java.lang.Integer" order="AFTER">
+          SELECT LAST_INSERT_ID();
+      </selectKey>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.sys.persistence.domain.Speech" >
     update sys_speech

@@ -17,7 +17,7 @@
     <result column="USER_TYPE_" property="userType" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    USER_ID_, FULLNAME_, ACCOUNT_, PASSWORD_, EMAIL_, MOBILE_, WEIXIN_, CREATE_TIME_, 
+    USER_ID_, FULLNAME_, ACCOUNT_, PASSWORD_, EMAIL_, MOBILE_, WEIXIN_, CREATE_TIME_,
     PHOTO_, SEX_, AGE_, LIMIT_, USER_TYPE_
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -126,6 +126,9 @@
         #{userType,jdbcType=INTEGER},
       </if>
     </trim>
+      <selectKey keyProperty="userId" resultType="java.lang.Integer" order="AFTER">
+          SELECT LAST_INSERT_ID();
+      </selectKey>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.sys.persistence.domain.User" >
     update sys_user

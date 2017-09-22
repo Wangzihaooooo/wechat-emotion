@@ -11,14 +11,14 @@ import java.io.InputStreamReader;
  * Created on 2017/9/16 11:07
  **/
 @Service
-public class RecognitionEmotion {
+public class RecognitionEmotionService {
 
     /**
      * 用于识别的情绪
      * @param  fileName
      * @return 返回的是int类型   -1--无法识别 0--angry 1--fear 2--happy 3--sad
      */
-    public int recognition(String fileName){
+    public int recognitionEmotion(String fileName){
         int result = -1;//测试的结果
         String pyPath = PropertyUtil.getProperty("filePath.properties","recognitionPy.path")+"\\"+"Emotion.py";
         String speechPath = PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+fileName;

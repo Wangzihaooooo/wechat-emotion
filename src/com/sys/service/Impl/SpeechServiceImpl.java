@@ -3,6 +3,7 @@ package com.sys.service.Impl;
 import com.sys.persistence.dao.SpeechDao;
 import com.sys.persistence.domain.Speech;
 import com.sys.service.SpeechService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
@@ -10,14 +11,13 @@ import javax.annotation.Resource;
  * description:
  * Created on 2017/9/18 21:11
  */
+@Service
 public class SpeechServiceImpl implements SpeechService{
     @Resource
     private SpeechDao speechDao;
     @Override
-    public void addSpeech(Speech speech) {
-        speech.setWavPath(speech.getSilkPath().replace(".silk",".webn"));
-        speech.setWavPath(speech.getSilkPath().replace(".webn",".wav"));
-        speechDao.insertSelective(speech);
+    public int addSpeech(Speech speech) {
+        return speechDao.insertSelective(speech);
     }
 
     @Override
