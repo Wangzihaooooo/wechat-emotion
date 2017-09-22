@@ -21,7 +21,7 @@ import java.util.Date;
  * 2.对wav文件进行机器学习识别
  * 3.根据识别的情绪推荐音乐即重定向到RecommendMusicController
  * Created on 2017/9/22 9:19
- **/
+ */
 @Controller
 public class RecognitionEmotionController {
     @Resource
@@ -30,6 +30,15 @@ public class RecognitionEmotionController {
     private RecognitionEmotionService recognitionEmotionService;
     @Resource
     private SpeechService speechService;
+
+    /**
+     * Recognition emotion string.
+     * 情绪识别的核心调用方法
+     * @param request    the request
+     * @param attributes the attributes
+     * @param session    the session
+     * @return the string
+     */
     @RequestMapping("/recognitionEmotion")
     public String recognitionEmotion(HttpServletRequest request,RedirectAttributes attributes,HttpSession session){
         Speech speech=new Speech();
@@ -42,14 +51,17 @@ public class RecognitionEmotionController {
         speech.setSilkPath(silkFileName);
         speech.setWebnPath(webnFileName);
         speech.setWavPath(wavFileName);
+        //调用speechDecorderService进行解密解码
         boolean decordSuccess=speechDecorderService.decode(
                 PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+silkFileName,
                 PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+webnFileName,
                 PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+wavFileName);
         if(decordSuccess){
+            //将speech录音文件的相关数据存入数据库，并且跳转到recommendMusic路径的控制器方法
             speechService.addSpeech(speech);
             int speechId=speech.getSpeechId();//因为speechId在数据库中是自增的，因此需要插入后获取通过SELECT LAST_INSERT_ID()获取
             int emotionResult= recognitionEmotionService.recognitionEmotion(wavFileName);
+            //将数据保存在RedirectAttributes类中，将数据传递给跳转后的页面
             attributes.addAttribute("emotionResult",emotionResult);
             attributes.addAttribute("speechId",speechId);
             return "redirect:/recommendMusic";

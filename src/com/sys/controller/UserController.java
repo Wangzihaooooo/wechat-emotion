@@ -18,6 +18,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The type User controller.
+ */
 @Controller
 public class UserController {
     private static Logger log = Logger.getLogger(UserController.class.getName());
@@ -25,28 +28,33 @@ public class UserController {
     @Resource
     private UserService userService;
 
+    /**
+     * Add user int.
+     * 0是登录失败 1是登录成功
+     * @param account the account
+     * @param userId  the user id
+     * @param session the session
+     * @return the int
+     */
     @RequestMapping("/addUser")
     public @ResponseBody int  addUser(@RequestParam("account") String account,
                                  @RequestParam("userId") int userId,
                                  HttpSession session){
-        User user=userService.getUserById(userId);
-        if(user==null){
-            user=new User();
-            user.setAccount(account);
-            user.setUserId(userId);
-            userService.addUser(user);
+        int success=0;
+        try{
+            User user=userService.getUserById(userId);
+            if(user==null){
+                user=new User();
+                user.setAccount(account);
+                user.setUserId(userId);
+                userService.addUser(user);
+                success= 1;
+            }
+            session.setAttribute("userSession",user);
+        }catch (Exception e){
+            success= 0;
         }
-        session.setAttribute("userSession",user);
-        return 1;
-    }
-
-    @RequestMapping("/showUserToJspById")
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //获取所有的用户信息
-        List<User> userList = null;
-        request.setAttribute("userList", userList);
-        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+        return success;
     }
 
 }

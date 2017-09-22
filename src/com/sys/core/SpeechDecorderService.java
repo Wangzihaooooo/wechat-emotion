@@ -8,16 +8,21 @@ import java.io.*;
 
 /**
  * description:对微信小程序录音文件silk格式先进行base64解密来解码成webn格式，
- *              再运用ffmpeg工具运行命令行将webn解码成wav格式
+ * 再运用ffmpeg工具运行命令行将webn解码成wav格式
  * Created on 2017/9/18 19:55
- **/
+ */
 @Service
 public class SpeechDecorderService {
-
     private static Logger log = Logger.getLogger(SpeechDecorderService.class.getName());
     private Boolean success=false;//判断解码是否成功
-
-    //
+    /**
+     * Decode boolean.
+     * decode方法依次调用decodeToWebn decodeToWav 方法进行解密解码
+     * @param SilkFilePath the silk file path
+     * @param WebnFilePath the webn file path
+     * @param WavFilePath  the wav file path
+     * @return the boolean
+     */
     public Boolean decode(String SilkFilePath,String WebnFilePath,String WavFilePath){
         success=false;
         if(decodeToWebn(SilkFilePath,WebnFilePath)){

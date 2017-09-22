@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 /**
  * description:
  * Created on 2017/9/19 11:15
- **/
+ */
 @Controller
 public class FileController {
     @Resource
@@ -33,18 +33,24 @@ public class FileController {
     private RecognitionEmotionService recognitionEmotionService;
     @Resource
     private UserService userService;
-    @RequestMapping(value="/{formName}")
-    public String loginForm(@PathVariable String formName){
-        // 动态跳转页面
-        return formName;
-    }
-    // 上传文件会自动绑定到MultipartFile中
+
+    /**
+     * Upload string.
+     * 上传录音文件的方法 将文件保存到指定位置并且跳转到路径为recognitionEmotion的控制器方法
+     * @param request       the request
+     * @param multipartFile the multipart file
+     * @param attributes    the attributes
+     * @param session       the session
+     * @return the string
+     * @throws Exception the exception
+     */
+// 上传文件会自动绑定到MultipartFile中
     @RequestMapping(value="/upload",method= RequestMethod.POST)
     public String upload(HttpServletRequest request,
                          @RequestParam("file") MultipartFile multipartFile,
                          RedirectAttributes attributes,
                          HttpSession session) throws Exception{
-        session.setAttribute("userSession",userService.getUserById(1));
+        session.setAttribute("userSession",userService.getUserById(1));//获取当前会话里的user数据
         String silkFileName=multipartFile.getOriginalFilename(); // 得到上传时的文件名
         attributes.addAttribute("silkFileName",silkFileName);
         boolean success=FileUtil.upload(multipartFile,"silk");
@@ -55,6 +61,15 @@ public class FileController {
         }
     }
 
+    /**
+     * Download response entity.
+     * 下载文件的方法
+     * @param request  the request
+     * @param filename the filename
+     * @param model    the model
+     * @return the response entity
+     * @throws Exception the exception
+     */
     @RequestMapping(value="/download")
     public ResponseEntity<byte[]> download(HttpServletRequest request,
                                            @RequestParam("filename") String filename,

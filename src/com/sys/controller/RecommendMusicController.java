@@ -22,10 +22,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
+
 /**
  * description:推荐音乐的控制器
  * Created on 2017/9/22 10:00
- **/
+ */
 @Controller
 public class RecommendMusicController {
     @Resource
@@ -40,6 +41,16 @@ public class RecommendMusicController {
     private AlbumService          albumService;
     @Resource
     private SingerService         singerService;
+
+    /**
+     * Recommend music list.
+     * 推荐音乐列表 但不包含具体音乐信息
+     * @param request       the request
+     * @param emotionResult the emotion result
+     * @param speechId      the speech id
+     * @param session       the session
+     * @return the list
+     */
     @RequestMapping("recommendMusic")
     public @ResponseBody List<Music> recommendMusic(HttpServletRequest request,
                                          @RequestParam("emotionResult") int emotionResult,
@@ -63,6 +74,12 @@ public class RecommendMusicController {
         return musicList;
     }
 
+    /**
+     * Gets music detail.
+     * 根据musicId来获取音乐具体信息 即song singer album
+     * @param musicId the music id
+     * @return the music detail
+     */
     @RequestMapping("getMusicDetail")
     public @ResponseBody Map<String,Object> getMusicDetail(@RequestParam("musicId") int musicId){
         Music music=musicService.getMusiceById(musicId);
