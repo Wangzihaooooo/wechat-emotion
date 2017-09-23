@@ -1,6 +1,7 @@
 package com.sys.controller;
 
 import com.module.spider.persistence.domain.Album;
+import com.module.spider.persistence.domain.Music;
 import com.module.spider.persistence.domain.Singer;
 import com.module.spider.persistence.domain.Song;
 import com.module.spider.service.AlbumService;
@@ -8,7 +9,6 @@ import com.module.spider.service.MusicService;
 import com.module.spider.service.SingerService;
 import com.module.spider.service.SongService;
 import com.sys.core.RecommendMusicService;
-import com.module.spider.persistence.domain.Music;
 import com.sys.persistence.domain.SpeechRecord;
 import com.sys.persistence.domain.User;
 import com.sys.service.SpeechRecordService;
