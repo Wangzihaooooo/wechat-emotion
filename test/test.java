@@ -1,4 +1,4 @@
-import com.module.recognition.core.RecognitionEmotionService;
+import com.sys.core.RecognitionEmotionService;
 import com.sys.core.SpeechDecorderService;
 import com.module.recognition.service.TagRelationService;
 import com.module.recognition.service.TagService;

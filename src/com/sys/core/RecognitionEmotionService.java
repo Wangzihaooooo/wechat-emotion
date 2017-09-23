@@ -1,4 +1,4 @@
-package com.module.recognition.core;
+package com.sys.core;
 
 import com.sys.util.PropertyUtil;
 import org.springframework.stereotype.Service;

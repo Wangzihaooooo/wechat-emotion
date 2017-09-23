@@ -1,6 +1,6 @@
 package com.sys.controller;
 
-import com.module.recognition.core.RecognitionEmotionService;
+import com.sys.core.RecognitionEmotionService;
 import com.sys.core.SpeechDecorderService;
 import com.sys.persistence.domain.Speech;
 import com.sys.persistence.domain.User;

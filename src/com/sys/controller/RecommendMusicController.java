@@ -52,12 +52,16 @@ public class RecommendMusicController {
      * @return the list
      */
     @RequestMapping("recommendMusic")
-    public @ResponseBody List<Music> recommendMusic(HttpServletRequest request,
+    @ResponseBody //返回的结果直接显示在界面上，数据会经过springmvc的fastJsonHttpMessageConverter，转化成json格式
+    public  Map<String,Object> recommendMusic(HttpServletRequest request,
                                          @RequestParam("emotionResult") int emotionResult,
                                          @RequestParam("speechId") int speechId,
                                          HttpSession session){
         ModelAndView modelAndView=new ModelAndView();
         List<Music> musicList=recommendMusicService.getMusicGroup(emotionResult,10);
+        Map<String,Object> responseMap=new HashMap<>();
+        responseMap.put("musicList",musicList);
+        responseMap.put("emtionResult",emotionResult);
         User user=(User)session.getAttribute("userSession");
         Music music;
         SpeechRecord speechRecord;
@@ -71,7 +75,7 @@ public class RecommendMusicController {
             speechRecord.setDate(new Date());
             speechRecordService.addSpeechRecord(speechRecord);
         }
-        return musicList;
+        return responseMap;
     }
 
     /**

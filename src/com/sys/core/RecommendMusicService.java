@@ -39,11 +39,5 @@ public class RecommendMusicService {
         List<Music> musicList=musicService.getMusicListBySongId(integerList);
         return musicList;
     }
-    /**
-     * 获取wav文件 并返回路径
-     * @param wavFileName
-     * @return
-     * @throws Exception
-     */
 
 }
