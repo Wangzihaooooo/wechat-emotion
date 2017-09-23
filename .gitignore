@@ -3,22 +3,13 @@
 ### Example user template
 
 # IntelliJ project files
-*.iml
+*.pyc
 out
 gen
 .gitignore
-src/com/module/recognition/pythonCode/Feature.pyc
-src/com/module/recognition/pythonCode/Frame.pyc
-src/com/module/recognition/pythonCode/Vad.pyc
-
-src/com/module/spider/pythonCode/music/__init__.pyc
-src/com/module/spider/pythonCode/music/items.pyc
-src/com/module/spider/pythonCode/music/pipelines.pyc
-src/com/module/spider/pythonCode/music/settings.pyc
-src/com/module/spider/pythonCode/music/spiders/__init__.pyc
-src/com/module/spider/pythonCode/music/spiders/musicSpider.pyc
 target/
 
 /resources/sys/db-config.properties
 /resources/sys/filePath.properties
 /src/com/module/recognition/pythonCode/tempVoice/
+/webapp/WEB-INF/song/
