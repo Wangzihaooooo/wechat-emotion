@@ -13,3 +13,4 @@ target/
 /resources/sys/filePath.properties
 /src/com/module/recognition/pythonCode/tempVoice/
 /webapp/WEB-INF/song/
+/webapp/WEB-INF/voice/
