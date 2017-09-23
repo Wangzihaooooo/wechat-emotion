@@ -3,13 +3,10 @@
 ### Example user template
 
 # IntelliJ project files
-.idea
 *.iml
 out
 gen
 .gitignore
-.idea/dataSources.local.xml
-.idea/workspace.xml
 src/com/module/recognition/pythonCode/Feature.pyc
 src/com/module/recognition/pythonCode/Frame.pyc
 src/com/module/recognition/pythonCode/Vad.pyc

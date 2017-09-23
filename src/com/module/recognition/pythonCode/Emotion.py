@@ -46,11 +46,4 @@ def getEmotion(filename):
 
 
 
-if __name__ == "__main__":
-
-    filename = sys.argv[1]
-
-    e = getEmotion(filename)
-
-    print e
 
