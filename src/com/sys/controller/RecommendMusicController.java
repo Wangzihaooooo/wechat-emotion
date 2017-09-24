@@ -84,7 +84,7 @@ public class RecommendMusicController {
      */
     @RequestMapping("getMusicDetail")
     public @ResponseBody Map<String,Object> getMusicDetail(@RequestParam("musicId") int musicId){
-        //根据music的id分别从数据库获取
+        //根据music的id分别从数据库获取song singer albumd的数据 并保存到Map<String,Object>传给后端
         Music music=musicService.getMusiceById(musicId);
         Song song=songService.getSongById(music.getSongId());
         Singer singer=singerService.getSingerById(music.getSingerId());
