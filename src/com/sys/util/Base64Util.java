@@ -1,7 +1,7 @@
 package com.sys.util;
 
 /**
- * description:
+ * description:进行base64解密的源码
  * Created on 2017/9/18 17:47
  **/
 import java.io.UnsupportedEncodingException;

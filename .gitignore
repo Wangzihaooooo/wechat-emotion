@@ -18,3 +18,4 @@ target/
 /webapp/WEB-INF/voice/
 /webapp/WEB-INF/song/
 /resources/sys/filePath.properties
+!/webapp/WEB-INF/song/
