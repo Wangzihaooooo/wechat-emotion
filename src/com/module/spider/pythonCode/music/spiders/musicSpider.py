@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import urllib
-import scrapy
 import json
-import urllib2
 import os
+import urllib2
 
+import scrapy
+from music.items import MusicItem
 from scrapy import FormRequest
 from scrapy.utils.project import get_project_settings
-from music.items import MusicItem
+
 
 class MusicspiderSpider(scrapy.Spider):
     name = 'musicSpider'
@@ -74,17 +74,18 @@ class MusicspiderSpider(scrapy.Spider):
 
         #获取setting中的音乐下载路径
         settings = get_project_settings()
-        fileDir=settings.get('SONG_DIR')
+        fileDir=settings.get('FILE_DIR')
+        songUrl=settings.get('SONG_URL')
         if not os.path.exists(fileDir):
             os.makedirs(fileDir)
 
         # Download unfinished mp3 again.
-        songDir = ("%s\%s.mp3" %(fileDir, item['song_title']))
         songlink = context_json["data"]["songList"][0]["songLink"]
+        songDir = ("%s\%s.mp3" %(fileDir, item['song_title']))
+        item["song_dir"] =  ("%s/%s.mp3" %(songUrl, item['song_title']))
         songPic = context_json["data"]["songList"][0]["songPicRadio"]
         item["album_id"]=context_json["data"]["songList"][0]["albumId"]
         item["singer_id"]=context_json["data"]["songList"][0]["artistId"]
-        item["song_dir"] = songDir
         item["song_pic"] = songPic
         try:
             f = urllib2.urlopen(songlink)

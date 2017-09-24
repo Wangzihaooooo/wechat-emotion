@@ -19,10 +19,10 @@ MYSQL_PORT = 3306
 MYSQL_USERNAME = 'root'
 MYSQL_PASSWORD = '0224'
 MYSQL_DB = 'dachuang'
-SONG_DIR='F:\\idea\\weixin\\webapp\\WEB-INF\\song'
+FILE_DIR='F:\\idea\\weixin\\webapp\\WEB-INF\\song'
+SONG_URL='http://localhost:8080'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'music (+http://www.yourdomain.com)'
-
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 

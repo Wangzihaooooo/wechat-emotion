@@ -15,3 +15,6 @@ target/
 /src/com/module/spider/pythonCode/music/spiders/__init__.py
 /src/com/module/spider/pythonCode/music/__init__.py
 /resources/sys/db-config.properties
+/webapp/WEB-INF/voice/
+/webapp/WEB-INF/song/
+/resources/sys/filePath.properties
