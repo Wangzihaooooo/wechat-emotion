@@ -3,14 +3,15 @@
 ### Example user template
 
 # IntelliJ project files
-*.pyc
 out
 gen
 .gitignore
 target/
 
-/resources/sys/db-config.properties
-/resources/sys/filePath.properties
+
 /src/com/module/recognition/pythonCode/tempVoice/
-/webapp/WEB-INF/song/
-/webapp/WEB-INF/voice/
+
+
+/src/com/module/spider/pythonCode/music/spiders/__init__.py
+/src/com/module/spider/pythonCode/music/__init__.py
+/resources/sys/db-config.properties
