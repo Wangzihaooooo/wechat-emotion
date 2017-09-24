@@ -77,14 +77,13 @@ public class RecommendMusicController {
         }
         return responseMap;
     }
-
     /**
      * Gets music detail.
      * 根据musicId来获取音乐具体信息 即song singer album
      * @param musicId the music id
      * @return the music detail
      */
-    @RequestMapping("getMusicDetail")
+    @RequestMapping("我")
     public @ResponseBody Map<String,Object> getMusicDetail(@RequestParam("musicId") int musicId){
         Music music=musicService.getMusiceById(musicId);
         Song song=songService.getSongById(music.getSongId());
