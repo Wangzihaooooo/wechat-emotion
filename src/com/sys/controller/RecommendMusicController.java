@@ -83,7 +83,7 @@ public class RecommendMusicController {
      * @param musicId the music id
      * @return the music detail
      */
-    @RequestMapping("我")
+    @RequestMapping("getMusicDetail")
     public @ResponseBody Map<String,Object> getMusicDetail(@RequestParam("musicId") int musicId){
         Music music=musicService.getMusiceById(musicId);
         Song song=songService.getSongById(music.getSongId());
