@@ -33,7 +33,7 @@ public class FileController {
     @Resource
     private UserService userService;
 
-    /*@RequestMapping(value="/{formName}")
+   /* @RequestMapping(value="/{formName}")
     public String loginForm(@PathVariable String formName){
         // 动态跳转页面
         return formName;

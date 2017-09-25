@@ -1,8 +1,8 @@
 package com.sys.core;
 
-import com.sys.util.Base64Util;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import sun.misc.BASE64Decoder;
 
 import java.io.*;
 
@@ -60,7 +60,9 @@ public class SpeechDecorderService {
 
                 try {
                     File webmFile = new File(WebnFilePath);
-                    byte[] bt = Base64Util.decode(olddata) ;
+                    BASE64Decoder base64Decoder=new BASE64Decoder();
+                    byte[] bt = base64Decoder.decodeBuffer(olddata) ;
+                    //byte[] bt = Base64Util.decode(olddata) ;
                     FileOutputStream in = new FileOutputStream(webmFile);
                     try {
                         in.write(bt, 0, bt.length);

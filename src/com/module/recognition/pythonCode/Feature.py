@@ -2,8 +2,10 @@
 
 # 提取特征
 import librosa
-from Vad import Vad
 import numpy as np
+
+from Vad import Vad
+
 
 class Feature(object):
 
@@ -14,7 +16,10 @@ class Feature(object):
         #端点检测
         vad = Vad(self.filename)
         newVoice = vad.getNewVoice()
-        
+
+        #Load the audio as a waveform `y`
+        #Store the sampling rate as `sr`
+        #load默认的采样率是22050，如果需要读取原始采样率,需要.load(filename,sr=None)而不是load(filename)
         y, sr = librosa.load(newVoice)
         #获取mfcc
         ccc = librosa.feature.mfcc(y=y, sr=sr)
