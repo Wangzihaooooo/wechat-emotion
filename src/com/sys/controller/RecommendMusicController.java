@@ -59,7 +59,7 @@ public class RecommendMusicController {
         List<Music> musicList=recommendMusicService.getMusicGroup(emotionResult,10);//随机从数据库选取指定数量歌曲，，默认是10首
         Map<String,Object> responseMap=new HashMap<>();//返回给客户端map类型，里面包含全部歌曲的music信息和识别的情绪结果id
         responseMap.put("musicList",musicList);
-        responseMap.put("emtionResult",emotionResult);
+        responseMap.put("emotionResult",emotionResult);
         User user=(User)session.getAttribute("userSession");//从session中提取user信息
         //循环提取歌曲列表中每首歌music信息，保存到数据库的speechrecord表里，进行历史记录
         Music music;
