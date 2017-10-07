@@ -57,10 +57,11 @@ public class RecognitionEmotionController {
                 PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+webnFileName,
                 PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+wavFileName);
         if(decordSuccess){
+            int emotionResult= recognitionEmotionService.recognitionEmotion(wavFileName);
+            speech.setTagId(emotionResult);
             //将speech录音文件的相关数据存入数据库，并且跳转到recommendMusic路径的控制器方法
             speechService.addSpeech(speech);
             int speechId=speech.getSpeechId();//因为speechId在数据库中是自增的，因此需要插入后获取通过SELECT LAST_INSERT_ID()获取
-            int emotionResult= recognitionEmotionService.recognitionEmotion(wavFileName);
             //将数据保存在RedirectAttributes类中，将数据传递给跳转后的页面
             attributes.addAttribute("emotionResult",emotionResult);
             attributes.addAttribute("speechId",speechId);

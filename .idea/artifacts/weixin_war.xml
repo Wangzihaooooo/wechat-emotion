@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" build-on-make="true" name="weixin:war">
     <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="weixin-1.0-SNAPSHOT.war">
+    <root id="archive" name="speechEmotionRecg.war">
       <element id="artifact" artifact-name="weixin:war exploded" />
     </root>
   </artifact>

@@ -41,12 +41,12 @@
 
 
     <!-- 使用默认的Servlet来响应静态文件-->
-    <mvc:default-servlet-handler/>
+    <!--<mvc:default-servlet-handler/>-->
     <!--静态资源映射-->
     <!--mapping="/js/**"  配置路径来响应静态文件如js文件 否则DispatcherServlet会报404错误
     表示当浏览器有静态资源请求的时候，并且请求url路径中带有：/js/，则这个资源跑到webapp目录下的/WEB-INF/statics/js/去找
     比如我们在 JSP 中引入一个 js 文件：src="${webRoot}/js/jQuery-core/jquery-1.6.1.min.js-->
-    <!--<mvc:resources mapping="/**.mp3" location="/WEB-INF/song/"/>-->
+    <mvc:resources mapping="/**.mp3" location="/WEB-INF/song/"/>
     <!--<mvc:resources mapping="/js/**" location="/WEB-INF/static/js/"/>
     <mvc:resources mapping="/image/**" location="/WEB-INF/static/image/"/>-->
 

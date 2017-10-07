@@ -20,7 +20,7 @@ public class RecognitionEmotionService {
      */
     public int recognitionEmotion(String fileName){
         int result = -1;//测试的结果
-        String pyPath = PropertyUtil.getProperty("filePath.properties","recognitionPy.path")+"\\"+"Emotion.py";
+        String pyPath = PropertyUtil.getProperty("filePath.properties","recognitionPy.path")+"\\"+"emotion.py";
         String speechPath = PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+fileName;
         Runtime run = Runtime.getRuntime();
         try {

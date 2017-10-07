@@ -17,6 +17,13 @@
     from sys_speech_record
     where RECORD_ID_ = #{recordId,jdbcType=INTEGER}
   </select>
+  <select id="selectByUserIdAndDate" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_speech_record
+    where USER_ID_ = #{userId,jdbcType=INTEGER}
+    and DATE_ BETWEEN #{dateBegin,jdbcType=VARCHAR} AND #{dateEnd,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sys_speech_record
     where RECORD_ID_ = #{recordId,jdbcType=INTEGER}

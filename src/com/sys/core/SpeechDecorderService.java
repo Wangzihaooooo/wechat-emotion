@@ -60,6 +60,7 @@ public class SpeechDecorderService {
 
                 try {
                     File webmFile = new File(WebnFilePath);
+                    //Runtime.getRuntime().exec("chmod 777 -R" + " "+WebnFilePath);
                     BASE64Decoder base64Decoder=new BASE64Decoder();
                     byte[] bt = base64Decoder.decodeBuffer(olddata) ;
                     //byte[] bt = Base64Util.decode(olddata) ;
@@ -92,6 +93,10 @@ public class SpeechDecorderService {
             String path="ffmpeg -i "+WebnFilePath+" -ar 16000 -f wav "+WavFilePath ;
             Process ps = Runtime.getRuntime().exec(path);
             ps.waitFor();
+            File wavFile = new File(WavFilePath);
+            wavFile.setExecutable(true);
+            wavFile.setReadable(true);
+            wavFile.setWritable(true);
             success=true;
         } catch (Exception e) {
             e.printStackTrace();

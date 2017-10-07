@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.File;
 
 /**
@@ -30,7 +31,9 @@ public class FileUtil {
                     filepath.getParentFile().mkdirs();
                 }
                 // 将上传文件保存到一个目标文件当中
-                file.transferTo(new File(dirPath+File.separator+ filename));
+                File silkFile=new File(dirPath+File.separator+ filename);
+                //Runtime.getRuntime().exec("chmod 777 -R" + " "+dirPath+File.separator+filename);
+                file.transferTo(silkFile);
                 return true;
             }else{
                 return false;

@@ -30,5 +30,4 @@ public interface SpeechService {
      * @return the speech by user id
      */
     public Speech getSpeechByUserId(Integer userId);
-
 }

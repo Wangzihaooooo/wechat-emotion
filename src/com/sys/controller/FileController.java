@@ -8,6 +8,7 @@ import com.sys.util.FileUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,11 +34,11 @@ public class FileController {
     @Resource
     private UserService userService;
 
-   /* @RequestMapping(value="/{formName}")
+    @RequestMapping(value="/{formName}")
     public String loginForm(@PathVariable String formName){
         // 动态跳转页面
         return formName;
-    }*/
+    }
     /**
      * Upload string.
      * 上传录音文件的方法 将文件保存到指定位置并且跳转到路径为recognitionEmotion的控制器方法

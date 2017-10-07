@@ -12,7 +12,7 @@
     <appender name="File" class="org.apache.log4j.DailyRollingFileAppender">
         <errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
         <!-- 日志文件位置 -->
-        <param name="File" value="/usr/share/tomcatlog" />
+        <param name="File" value="/WEB-INF/log/sys.log" />
         <!-- 是否在重新启动服务时，在原有的基础上追加日志 -->
         <param name="Append" value="true" />
         <param name="DatePattern" value="'.'yyyy-MM-dd" />
@@ -48,9 +48,9 @@
 
     <root>
         <level value="DEBUG" />
-        <!--<appender-ref ref="FILE" />   将日志输出到文件中-->
+        <!--<appender-ref ref="FILE" />   &lt;!&ndash;将日志输出到文件中&ndash;&gt;-->
         <!--<appender-ref ref="STDOUT" />  将日志输出到控制台中-->
-        <appender-ref ref="Console"/>
+        <!--<appender-ref ref="Console"/>-->
         <appender-ref ref="File"/>
     </root>
 </log4j:configuration>

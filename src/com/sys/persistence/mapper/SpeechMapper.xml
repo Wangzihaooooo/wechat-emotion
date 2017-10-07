@@ -8,9 +8,10 @@
     <result column="SILK_PATH_" property="silkPath" jdbcType="VARCHAR" />
     <result column="WEBN_PATH_" property="webnPath" jdbcType="VARCHAR" />
     <result column="WAV_PATH_" property="wavPath" jdbcType="VARCHAR" />
+    <result column="TAG_ID_" property="tagId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    SPEECH_ID_, USER_ID_, DATE_, SILK_PATH_, WEBN_PATH_, WAV_PATH_
+    SPEECH_ID_, USER_ID_, DATE_, SILK_PATH_, WEBN_PATH_, WAV_PATH_,TAG_ID_
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -18,22 +19,24 @@
     from sys_speech
     where SPEECH_ID_ = #{speechId,jdbcType=INTEGER}
   </select>
+
   <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from sys_speech
     where USER_ID_ = #{userId,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sys_speech
     where SPEECH_ID_ = #{speechId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.sys.persistence.domain.Speech" >
     insert into sys_speech (SPEECH_ID_, USER_ID_, DATE_, 
-      SILK_PATH_, WEBN_PATH_, WAV_PATH_
+      SILK_PATH_, WEBN_PATH_, WAV_PATH_, TAG_ID_
       )
     values (#{speechId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, 
-      #{silkPath,jdbcType=VARCHAR}, #{webnPath,jdbcType=VARCHAR}, #{wavPath,jdbcType=VARCHAR}
+      #{silkPath,jdbcType=VARCHAR}, #{webnPath,jdbcType=VARCHAR}, #{wavPath,jdbcType=VARCHAR}, #{tagId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.sys.persistence.domain.Speech" >
@@ -57,6 +60,9 @@
       <if test="wavPath != null" >
         WAV_PATH_,
       </if>
+      <if test="tagId != null" >
+        TAG_ID_,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="speechId != null" >
@@ -76,6 +82,9 @@
       </if>
       <if test="wavPath != null" >
         #{wavPath,jdbcType=VARCHAR},
+      </if>
+      <if test="tagId != null" >
+        #{tagId,jdbcType=INTEGER},
       </if>
     </trim>
       <selectKey keyProperty="speechId" resultType="java.lang.Integer" order="AFTER">
@@ -100,6 +109,9 @@
       <if test="wavPath != null" >
         WAV_PATH_ = #{wavPath,jdbcType=VARCHAR},
       </if>
+      <if test="tagId != null" >
+        TAG_ID_ = #{tagId,jdbcType=INTEGER},
+      </if>
     </set>
     where SPEECH_ID_ = #{speechId,jdbcType=INTEGER}
   </update>
@@ -109,7 +121,8 @@
       DATE_ = #{date,jdbcType=TIMESTAMP},
       SILK_PATH_ = #{silkPath,jdbcType=VARCHAR},
       WEBN_PATH_ = #{webnPath,jdbcType=VARCHAR},
-      WAV_PATH_ = #{wavPath,jdbcType=VARCHAR}
+      WAV_PATH_ = #{wavPath,jdbcType=VARCHAR},
+      TAG_ID_ = #{tagId,jdbcType=INTEGER}
     where SPEECH_ID_ = #{speechId,jdbcType=INTEGER}
   </update>
 </mapper>

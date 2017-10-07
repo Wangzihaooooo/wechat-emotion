@@ -6,6 +6,7 @@ import com.sys.service.SpeechRecordService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * description:
@@ -23,5 +24,10 @@ public class SpeechRecordServiceImpl implements SpeechRecordService{
     @Override
     public SpeechRecord getSpeechRecordByRecordId(int recordId) {
         return speechRecordDao.selectByPrimaryKey(recordId);
+    }
+
+    @Override
+    public List<SpeechRecord> getSpeechRecordByUserIdAndDate(Integer userId, String dateBegin, String dateEnd) {
+        return speechRecordDao.selectByUserIdAndDate(userId,dateBegin,dateEnd);
     }
 }
