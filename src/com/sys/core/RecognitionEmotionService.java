@@ -1,6 +1,5 @@
 package com.sys.core;
 
-import com.sys.util.PropertyUtil;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -20,8 +19,8 @@ public class RecognitionEmotionService {
      */
     public int recognitionEmotion(String fileName){
         int result = -1;//测试的结果
-        String pyPath = PropertyUtil.getProperty("filePath.properties","recognitionPy.path")+"\\"+"emotion.py";
-        String speechPath = PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+fileName;
+        String pyPath = System.getProperty("recognitionPyPath")+"\\"+"emotion.py";
+        String speechPath = System.getProperty("speechPath")+"\\"+fileName;
         Runtime run = Runtime.getRuntime();
         try {
             Process process = run.exec("python" +" "+ pyPath + " " + speechPath);

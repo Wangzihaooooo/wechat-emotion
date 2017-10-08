@@ -5,7 +5,6 @@ import com.sys.core.SpeechDecorderService;
 import com.sys.persistence.domain.Speech;
 import com.sys.persistence.domain.User;
 import com.sys.service.SpeechService;
-import com.sys.util.PropertyUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -51,11 +50,13 @@ public class RecognitionEmotionController {
         speech.setSilkPath(silkFileName);
         speech.setWebnPath(webnFileName);
         speech.setWavPath(wavFileName);
+
         //调用speechDecorderService进行解密解码
+        String speechPath=System.getProperty("speechPath");
         boolean decordSuccess=speechDecorderService.decode(
-                PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+silkFileName,
-                PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+webnFileName,
-                PropertyUtil.getProperty("filePath.properties","speech.path")+"\\"+wavFileName);
+                speechPath+"/"+silkFileName,
+                speechPath+"/"+webnFileName,
+                speechPath+"/"+wavFileName);
         if(decordSuccess){
             int emotionResult= recognitionEmotionService.recognitionEmotion(wavFileName);
             speech.setTagId(emotionResult);

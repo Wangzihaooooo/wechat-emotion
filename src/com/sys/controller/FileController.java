@@ -55,10 +55,14 @@ public class FileController {
                          @RequestParam("file") MultipartFile multipartFile,
                          RedirectAttributes attributes,
                          HttpSession session) throws Exception{
+        System.setProperty("warPath",request.getServletContext().getRealPath("/"));
+        System.setProperty("speechPath",request.getServletContext().getRealPath("/speech/"));
+        System.setProperty("songPath",request.getServletContext().getRealPath("/WEB-INF/song/"));
+        System.setProperty("recognitionPyPath",request.getServletContext().getRealPath("/WEB-INF/classes/com/module/recognition/pythonCode"));
         session.setAttribute("userSession",userService.getUserById(1));//获取当前会话里的user数据
         String silkFileName=multipartFile.getOriginalFilename(); // 得到上传时的文件名
         attributes.addAttribute("silkFileName",silkFileName);
-        boolean success=FileUtil.upload(multipartFile,"silk");
+        boolean success=FileUtil.upload(request,multipartFile,"silk");
         if(success){
             return "redirect:/recognitionEmotion";
         }else {

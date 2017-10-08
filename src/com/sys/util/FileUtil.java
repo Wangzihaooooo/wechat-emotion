@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 
 /**
@@ -16,20 +17,18 @@ import java.io.File;
  **/
 public class FileUtil {
 
-    public static Boolean upload(MultipartFile file,String fileType) throws Exception {
+    public static Boolean upload(HttpServletRequest request,MultipartFile file, String fileType) throws Exception {
         if(fileType.equals("silk")){
             // 如果文件不为空，写入上传路径
             if(!file.isEmpty()){
                 // 上传文件路径 F:\idea\weixin\target\weixin-1.0-SNAPSHOT\speech
-                //String dirPath = request.getServletContext().getRealPath("/speech/");
-                String dirPath= PropertyUtil.getProperty("filePath.properties","speech.path");
+                String dirPath=System.getProperty("speechPath");;
                 // 得到上传时的文件名
                 String filename = file.getOriginalFilename();
                 // 判断父目录的路径是否存在，如果不存在就创建一个
                 File filepath = new File(dirPath,filename);
                 if (!filepath.getParentFile().exists()) {
-                    filepath.getParentFile().mkdirs();
-                }
+                    filepath.getParentFile().mkdirs(); }
                 // 将上传文件保存到一个目标文件当中
                 File silkFile=new File(dirPath+File.separator+ filename);
                 //Runtime.getRuntime().exec("chmod 777 -R" + " "+dirPath+File.separator+filename);
@@ -45,7 +44,7 @@ public class FileUtil {
     @RequestMapping(value="/download")
     public static ResponseEntity<byte[]> download(String filename)throws Exception{
         // 下载文件路径
-        String path = PropertyUtil.getProperty("filePath.properties","song.path");
+        String path = System.getProperty("songPath");
         File file = new File(path+File.separator+ filename);
         HttpHeaders headers = new HttpHeaders();
         // 下载显示的文件名，解决中文名称乱码问题

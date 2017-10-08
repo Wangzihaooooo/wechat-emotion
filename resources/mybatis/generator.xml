@@ -13,7 +13,7 @@
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
         <!-- 数据库链接URL、用户名、密码 -->
-        <jdbcConnection driverClass="${jdbc.driver.mysql5}" connectionURL="${jdbc.url}" userId="${jdbc.username}" password="${jdbc.password}">
+        <jdbcConnection driverClass="${jdbc.driver.mysql5}" connectionURL="${jdbc.url.mysql5}" userId="${jdbc.username}" password="${jdbc.password}">
         </jdbcConnection>
         <!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" userId="msa" password="msa">
         </jdbcConnection>-->

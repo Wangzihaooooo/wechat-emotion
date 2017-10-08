@@ -1,22 +1,16 @@
 package com.sys.controller;
-import com.module.spider.persistence.dao.MusicDao;
+
 import com.sys.persistence.domain.User;
-import com.sys.service.Impl.UserServiceImpl;
 import com.sys.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.util.List;
 
 /**
  * The type User controller.
@@ -37,9 +31,10 @@ public class UserController {
      * @return the int
      */
     @RequestMapping("/addUser")
-    public @ResponseBody int  addUser(@RequestParam("account") String account,
-                                 @RequestParam("userId") int userId,
-                                 HttpSession session){
+    public @ResponseBody int  addUser(HttpServletRequest request,
+                                      @RequestParam("account") String account,
+                                      @RequestParam("userId") int userId,
+                                      HttpSession session){
         int success=0;
         try{
             User user=userService.getUserById(userId);
@@ -51,6 +46,7 @@ public class UserController {
                 success= 1;
             }
             session.setAttribute("userSession",user);
+            //设置系统的属性，获取项目的speech路径并保存
         }catch (Exception e){
             success= 0;
         }

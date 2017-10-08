@@ -25,7 +25,12 @@ class Vad(object):
       segments = self.vad_collector(sample_rate, 30, 300, vad, frames)
       os.path.abspath(__file__) #文件绝对路径
       dir = os.path.dirname(os.path.abspath(__file__)) #文件目录绝对路径
-      path = dir + "/tempVoice/" + str(time.time()) + ".wav"
+      tempVoiceDir=dir+"/tempVoice/"
+      # 判断结果
+      if not os.path.exists(tempVoiceDir):
+         os.makedirs(tempVoiceDir)
+
+      path = tempVoiceDir + str(time.time()) + ".wav"
       self.write_wave(path, [j for [i,j] in enumerate(segments)][0], sample_rate)
       return path
 

@@ -9,10 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import sun.misc.BASE64Decoder;
 
 import javax.annotation.Resource;
-import java.io.*;
 
 @RunWith(SpringJUnit4ClassRunner.class) //使用Springtest框架
 @ContextConfiguration(locations = {"/mybatis/mybatis3.xml", "/spring/springmvc.xml"}) //加载配置
@@ -32,46 +30,9 @@ public class test {
     private RecognitionEmotionService recognitionEmotionService;
     @Test
     public void select() {
-        try {
-            String encoding = "utf-8";
-            File file = new File("C:\\Users\\wangzi\\Desktop\\setting\\silk-v3-decoder-master\\windows\\202.silk");
-            if (file.isFile() && file.exists()) { // 判断文件是否存在
-                InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding);// 考虑到编码格式
-                BufferedReader bufferedReader = new BufferedReader(read);
-                StringBuilder lineTxt = new StringBuilder();
-                String line = null;
-                while ((line = bufferedReader.readLine()) != null) {
-                    lineTxt.append(line);
-                }
-                read.close();
-
-                String olddata = lineTxt.toString();
-                olddata = olddata.replace("data:audio/webm;base64,", "");
-
-                try {
-                    File webmFile = new File("C:\\Users\\wangzi\\Desktop\\setting\\silk-v3-decoder-master\\windows\\202.webn");
-                    BASE64Decoder base64Decoder=new BASE64Decoder();
-                    byte[] bt = base64Decoder.decodeBuffer(olddata) ;
-                    //byte[] bt = Base64Util.decode(olddata) ;
-                    FileOutputStream in = new FileOutputStream(webmFile);
-                    try {
-                        in.write(bt, 0, bt.length);
-                        in.close();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                } catch (FileNotFoundException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            } else {
-                log.warn("找不到指定的文件");
-            }
-        } catch (Exception e) {
-            log.warn("读取文件内容出错");
-            e.printStackTrace();
-        }
+        System.out.println(System.getProperty("user.dir"));
+        System.out.println();
+        System.getProperty("user.dir");
         //创建一个日期对象
         /*Date d=new Date();
         System.out.println(d);
@@ -79,7 +40,7 @@ public class test {
         System.out.println(sdf);*/
         //log.info(recognitionEmotion.recognition("209.wav"));
         //log.info(recognitionEmotion.recognition("209a.wav"));
-        /*String fileName = PropertyUtil.getProperty("filePath.properties","speech.path")+"\\201.wav";
+        /*
         String path = PropertyUtil.getProperty("filePath.properties","recognitionPy.path")+"\\Emotion.py";
         fileName="F:\\idea\\weixin\\src\\com\\module\\recognition\\pythonCode\\voice\\201.wav";
         path="F:\\idea\\weixin\\src\\com\\module\\recognition\\pythonCode\\Emotion.py";
