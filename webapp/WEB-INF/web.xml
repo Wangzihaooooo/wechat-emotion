@@ -77,6 +77,12 @@
         <url-pattern>/druid/*</url-pattern>
     </servlet-mapping>
 
+    <!-- 如果log4j.xml是资源文件下可以不用配置，系统会自动先扫描log4j.xml，如果没有则扫描log4j.properties。因此下面可以不用配置  -->
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>\resources\sys\log4j.xml</param-value>
+    </context-param>
+
     <listener>
         <listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
     </listener>

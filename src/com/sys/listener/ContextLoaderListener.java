@@ -17,6 +17,7 @@ public class ContextLoaderListener implements ServletContextListener {
         ServletContext servletContext = servletContextEvent.getServletContext();
         //设置全局变量属性
         System.setProperty("warPath",servletContext.getRealPath("/"));
+        System.setProperty("log4jPath",servletContext.getRealPath("/log/sys.log"));
         System.setProperty("speechPath",servletContext.getRealPath("/speech/"));
         System.setProperty("songPath",servletContext.getRealPath("/WEB-INF/song/"));
         System.setProperty("recognitionPyPath",servletContext.getRealPath("/WEB-INF/classes/com/module/recognition/pythonCode"));
