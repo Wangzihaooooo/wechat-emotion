@@ -8,7 +8,6 @@ import com.sys.util.FileUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,14 +32,13 @@ public class FileController {
     private RecognitionEmotionService recognitionEmotionService;
     @Resource
     private UserService userService;
-    /**
-    @RequestMapping(value="/{formName}")
+
+    /*@RequestMapping(value="/{formName}")
     public String loginForm(@PathVariable String formName){
         // 动态跳转页面
         return formName;
-    }
-    */
-    
+    }*/
+
     /**
      * Upload string.
      * 上传录音文件的方法 将文件保存到指定位置并且跳转到路径为recognitionEmotion的控制器方法
@@ -57,10 +55,6 @@ public class FileController {
                          @RequestParam("file") MultipartFile multipartFile,
                          RedirectAttributes attributes,
                          HttpSession session) throws Exception{
-        System.setProperty("warPath",request.getServletContext().getRealPath("/"));
-        System.setProperty("speechPath",request.getServletContext().getRealPath("/speech/"));
-        System.setProperty("songPath",request.getServletContext().getRealPath("/WEB-INF/song/"));
-        System.setProperty("recognitionPyPath",request.getServletContext().getRealPath("/WEB-INF/classes/com/module/recognition/pythonCode"));
         session.setAttribute("userSession",userService.getUserById(1));//获取当前会话里的user数据
         String silkFileName=multipartFile.getOriginalFilename(); // 得到上传时的文件名
         attributes.addAttribute("silkFileName",silkFileName);
