@@ -15,7 +15,7 @@ public class ContextLoaderListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         //获得全局变量
         ServletContext servletContext = servletContextEvent.getServletContext();
-        //设置全局变量属性
+        //设置全局变量属性 获取各种文件的路径
         System.setProperty("warPath",servletContext.getRealPath("/"));
         System.setProperty("log4jPath",servletContext.getRealPath("/log/sys.log"));
         System.setProperty("speechPath",servletContext.getRealPath("/speech/"));
