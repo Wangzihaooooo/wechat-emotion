@@ -33,12 +33,14 @@ public class FileController {
     private RecognitionEmotionService recognitionEmotionService;
     @Resource
     private UserService userService;
-
+    /**
     @RequestMapping(value="/{formName}")
     public String loginForm(@PathVariable String formName){
         // 动态跳转页面
         return formName;
     }
+    */
+    
     /**
      * Upload string.
      * 上传录音文件的方法 将文件保存到指定位置并且跳转到路径为recognitionEmotion的控制器方法
