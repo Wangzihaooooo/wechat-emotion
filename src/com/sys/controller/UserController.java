@@ -30,7 +30,7 @@ public class UserController {
      * @param session the session
      * @return the int
      */
-    @RequestMapping("/addUser")
+    @RequestMapping("/checkUser")
     public @ResponseBody int  addUser(HttpServletRequest request,
                                       @RequestParam("account") String account,
                                       @RequestParam("userId") int userId,

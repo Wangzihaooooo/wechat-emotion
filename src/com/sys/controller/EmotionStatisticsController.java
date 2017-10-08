@@ -3,6 +3,7 @@ package com.sys.controller;
 import com.sys.persistence.domain.SpeechRecord;
 import com.sys.persistence.domain.User;
 import com.sys.service.SpeechRecordService;
+import com.sys.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,8 @@ import java.util.List;
 public class EmotionStatisticsController {
     @Resource
     private SpeechRecordService speechRecordService;
+    @Resource
+    private UserService userService;
     @RequestMapping("/EmotionStatistics")
     @ResponseBody
     public List<SpeechRecord> emotionStatistics(HttpServletRequest request,
