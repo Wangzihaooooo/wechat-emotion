@@ -11,10 +11,6 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring/spring4.xml</param-value>
     </context-param>
-    <listener>
-        <description>Spring容器加载监听器</description>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
 
     <!-- 加载springmvc配置文件   即定义Spring MVC的前端控制器-->
     <servlet>
@@ -84,10 +80,16 @@
     </context-param>
 
     <listener>
-        <listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
-    </listener>
-    <listener>
         <listener-class>com.sys.listener.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <description>Spring容器加载监听器</description>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
     </listener>
 
     <!-- 编码过滤器  -->

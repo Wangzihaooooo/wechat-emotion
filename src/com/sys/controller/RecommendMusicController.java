@@ -79,21 +79,27 @@ public class RecommendMusicController {
     /**
      * Gets music detail.
      * 根据musicId来获取音乐具体信息 即song singer album
-     * @param musicId the music id
+     * @param musicIdList the music id
      * @return the music detail
      */
     @RequestMapping("getMusicDetail")
-    public @ResponseBody Map<String,Object> getMusicDetail(@RequestParam("musicId") int musicId){
-        //根据music的id分别从数据库获取song singer albumd的数据 并保存到Map<String,Object>传给后端
-        Music music=musicService.getMusiceById(musicId);
-        Song song=songService.getSongById(music.getSongId());
-        Singer singer=singerService.getSingerById(music.getSingerId());
-        Album album=albumService.getAlbumById(music.getAlbumId());
-        Map<String,Object> deatilMap=new HashMap<>();
-        deatilMap.put("song",song);
-        deatilMap.put("singer",singer);
-        deatilMap.put("album",album);
-        return deatilMap;
+    public @ResponseBody List<Map<String,Object>> getMusicDetail(@RequestParam("musicIdList") List<String> musicIdList){
+        List<Map<String,Object>> detailList=new ArrayList<>();
+        for(String musicIdStr:musicIdList){
+            int musicId=Integer.parseInt(musicIdStr);
+            //根据music的id分别从数据库获取song singer albumd的数据 并保存到Map<String,Object>传给后端
+            Music music=musicService.getMusiceById(musicId);
+            Song song=songService.getSongById(music.getSongId());
+            Singer singer=singerService.getSingerById(music.getSingerId());
+            Album album=albumService.getAlbumById(music.getAlbumId());
+            Map<String,Object> deatilMap=new HashMap<>();
+            deatilMap.put("musicId",musicId);
+            deatilMap.put("song",song);
+            deatilMap.put("singer",singer);
+            deatilMap.put("album",album);
+            detailList.add(deatilMap);
+        }
+        return detailList;
     }
 
 }

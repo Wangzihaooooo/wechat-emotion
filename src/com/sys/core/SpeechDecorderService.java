@@ -1,5 +1,6 @@
 package com.sys.core;
 
+import com.sys.util.Base64Util;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import sun.misc.BASE64Decoder;
@@ -32,10 +33,10 @@ public class SpeechDecorderService {
                 log.info("解码成功");
             }
             else {
-                log.warn("webn to wav解码成功");
+                log.warn("webn to wav解码失败");
             }
         }else {
-            log.warn("silk to webn解码成功");
+            log.warn("silk to webn解码失败");
         }
         return success;
     }
@@ -62,8 +63,8 @@ public class SpeechDecorderService {
                     File webmFile = new File(WebnFilePath);
                     //Runtime.getRuntime().exec("chmod 777 -R" + " "+WebnFilePath);
                     BASE64Decoder base64Decoder=new BASE64Decoder();
-                    byte[] bt = base64Decoder.decodeBuffer(olddata) ;
-                    //byte[] bt = Base64Util.decode(olddata) ;
+                    //byte[] bt = base64Decoder.decodeBuffer(olddata) ;
+                    byte[] bt = Base64Util.decode(olddata) ;
                     FileOutputStream in = new FileOutputStream(webmFile);
                     try {
                         in.write(bt, 0, bt.length);
@@ -78,10 +79,10 @@ public class SpeechDecorderService {
                     e.printStackTrace();
                 }
             } else {
-                log.warn("找不到指定的文件");
+                log.warn("sorry 找不到指定的文件");
             }
         } catch (Exception e) {
-            log.warn("读取文件内容出错");
+            log.warn("warn 读取文件内容出错");
             e.printStackTrace();
         }
         return success;
@@ -90,13 +91,19 @@ public class SpeechDecorderService {
     private Boolean decodeToWav(String WebnFilePath,String WavFilePath){
         success=false;
         try {
-            String path="ffmpeg -i "+WebnFilePath+" -ar 16000 -f wav "+WavFilePath ;
+            log.info(WebnFilePath);
+            log.info(WavFilePath);
+            String path="ffmpeg -i"+" "+WebnFilePath+" "+"-ar 16000 -f wav"+" "+WavFilePath ;
+            //String[] cmds = {"/bin/sh", "-c", path};
             Process ps = Runtime.getRuntime().exec(path);
+            /*InputStream  in = new BufferedInputStream(ps.getInputStream());
+            StringBuffer buffer = new StringBuffer();
+            int ptr = 0;
+            while( (ptr = in.read()) != -1 ) {
+                buffer.append((char)ptr);
+            }
+            log.info(buffer.toString());*/
             ps.waitFor();
-            File wavFile = new File(WavFilePath);
-            wavFile.setExecutable(true);
-            wavFile.setReadable(true);
-            wavFile.setWritable(true);
             success=true;
         } catch (Exception e) {
             e.printStackTrace();
