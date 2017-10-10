@@ -3,6 +3,7 @@ package com.sys.controller;
 import com.sys.persistence.domain.SpeechRecord;
 import com.sys.persistence.domain.User;
 import com.sys.service.SpeechRecordService;
+import com.sys.service.SpeechService;
 import com.sys.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * description:情绪统计控制器
@@ -23,20 +25,29 @@ public class EmotionStatisticsController {
     @Resource
     private SpeechRecordService speechRecordService;
     @Resource
+    private SpeechService speechService;
+    @Resource
     private UserService userService;
     @RequestMapping("/EmotionStatistics")
     @ResponseBody
-    public List<SpeechRecord> emotionStatistics(HttpServletRequest request,
-                                  @RequestParam("dateBegin") String dateBegin,
-                                  @RequestParam("dateEnd") String dateEnd,
-                                  HttpSession session){
+    public Map<String,Object> emotionStatistics(@RequestParam("dateBegin") String dateBegin,
+                                                @RequestParam("dateEnd") String dateEnd,
+                                                HttpSession session){
         User user=(User)session.getAttribute("userSession");//获取会话session中保存的用户数据
         List<SpeechRecord> speechRecordList=speechRecordService.getSpeechRecordByUserIdAndDate(user.getUserId(),dateBegin,dateEnd);
-        /*Iterator iterator=speechRecordList.iterator();
-        while(iterator.hasNext()) {
 
-        }*/
-        return speechRecordList;
+        Map<String,Object> resultMap=new HashMap<>();
+        Map<Integer,Integer> tagIdMap=new HashMap<>();
+
+        for(SpeechRecord speechRecord:speechRecordList){
+            int speechId=speechRecord.getSpeechId();
+            int tagId = speechService.getSpeechBySpeechId(speechId).getTagId();
+            if(!tagIdMap.containsKey(speechId))
+                tagIdMap.put(speechId,tagId);
+        }
+        resultMap.put("speechRecordList",speechRecordList);
+        resultMap.put("tagIdMap",tagIdMap);
+        return resultMap;
     }
 
 }
