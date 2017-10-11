@@ -33,10 +33,10 @@ public class SpeechDecorderService {
                 log.info("解码成功");
             }
             else {
-                log.warn("webn to wav解码失败");
+                log.error("webn to wav解码失败");
             }
         }else {
-            log.warn("silk to webn解码失败");
+            log.error("silk to webn解码失败");
         }
         return success;
     }
@@ -50,7 +50,7 @@ public class SpeechDecorderService {
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding);// 考虑到编码格式
                 BufferedReader bufferedReader = new BufferedReader(read);
                 StringBuilder lineTxt = new StringBuilder();
-                String line = null;
+                String line ;
                 while ((line = bufferedReader.readLine()) != null) {
                     lineTxt.append(line);
                 }
@@ -79,10 +79,10 @@ public class SpeechDecorderService {
                     e.printStackTrace();
                 }
             } else {
-                log.warn("sorry 找不到指定的文件");
+                log.error("sorry 找不到指定的文件");
             }
         } catch (Exception e) {
-            log.warn("warn 读取文件内容出错");
+            log.error("warn 读取文件内容出错");
             e.printStackTrace();
         }
         return success;

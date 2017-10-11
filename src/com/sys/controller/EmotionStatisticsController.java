@@ -35,7 +35,7 @@ public class EmotionStatisticsController {
                                                 HttpSession session){
         Map<String,Object> resultMap=new HashMap<>();//最终返回给前端的Map
         Map<Integer,Integer> tagIdMap=new HashMap<>();//存放每个speechId对应的tagId
-
+        Map<Integer,String> dateMap=new HashMap<>();//存放每个speechId对应的日期
         //获取speechRecord
         User user=(User)session.getAttribute("userSession");//获取会话session中保存的用户数据
         List<SpeechRecord> speechRecordList=speechRecordService.getSpeechRecordByUserIdAndDate(user.getUserId(),dateBegin,dateEnd);
@@ -43,12 +43,16 @@ public class EmotionStatisticsController {
         //获取tagId
         for(SpeechRecord speechRecord:speechRecordList){
             int speechId=speechRecord.getSpeechId();
+            String date=speechRecord.getDate().toString();
             int tagId = speechService.getSpeechBySpeechId(speechId).getTagId();
-            if(!tagIdMap.containsKey(speechId))
+            if(!tagIdMap.containsKey(speechId)){
+                dateMap.put(speechId,speechRecord.getDate().toString());
                 tagIdMap.put(speechId,tagId);
+            }
         }
         resultMap.put("speechRecordList",speechRecordList);
         resultMap.put("tagIdMap",tagIdMap);
+        resultMap.put("dateMap",dateMap);
         return resultMap;
     }
 

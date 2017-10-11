@@ -22,7 +22,7 @@
         </layout>
     </appender>
 
-    <logger name="org.springframework">
+    <!--<logger name="org.springframework">
         <level value="ERROR" />
     </logger>
 
@@ -44,7 +44,7 @@
 
     <logger name="org.apache.activemq">
         <level value="ERROR"/>
-    </logger>
+    </logger>-->
 
     <root>
         <level value="DEBUG" />

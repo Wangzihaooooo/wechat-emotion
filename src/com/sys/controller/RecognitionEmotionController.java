@@ -5,6 +5,7 @@ import com.sys.core.SpeechDecorderService;
 import com.sys.persistence.domain.Speech;
 import com.sys.persistence.domain.User;
 import com.sys.service.SpeechService;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+
 
 /**
  * description:对上传的录音文件进行一系列操作，总共分为三步
@@ -29,7 +31,7 @@ public class RecognitionEmotionController {
     private RecognitionEmotionService recognitionEmotionService;
     @Resource
     private SpeechService speechService;
-
+    private static Logger log = Logger.getLogger(RecognitionEmotionController.class.getName());
     /**
      * Recognition emotion string.
      * 情绪识别的核心调用方法
@@ -59,14 +61,20 @@ public class RecognitionEmotionController {
                 speechPath+"/"+wavFileName);
         if(decordSuccess){
             int emotionResult= recognitionEmotionService.recognitionEmotion(wavFileName);
-            speech.setTagId(emotionResult);
-            //将speech录音文件的相关数据存入数据库，并且跳转到recommendMusic路径的控制器方法
-            speechService.addSpeech(speech);
-            int speechId=speech.getSpeechId();//因为speechId在数据库中是自增的，因此需要插入后获取通过SELECT LAST_INSERT_ID()获取
-            //将数据保存在RedirectAttributes类中，将数据传递给跳转后的页面
-            attributes.addAttribute("emotionResult",emotionResult);
-            attributes.addAttribute("speechId",speechId);
-            return "redirect:/recommendMusic";
+            if(emotionResult==-1){
+                log.info("情绪识别结果:"+String.valueOf(emotionResult));
+                speech.setTagId(emotionResult);
+                //将speech录音文件的相关数据存入数据库，并且跳转到recommendMusic路径的控制器方法
+                speechService.addSpeech(speech);
+                int speechId=speech.getSpeechId();//因为speechId在数据库中是自增的，因此需要插入后获取通过SELECT LAST_INSERT_ID()获取
+                //将数据保存在RedirectAttributes类中，将数据传递给跳转后的页面
+                attributes.addAttribute("emotionResult",emotionResult);
+                attributes.addAttribute("speechId",speechId);
+                return "redirect:/recommendMusic";
+            }else {
+                log.error("情绪识别失败");
+                return "error";
+            }
         }else{
             return "error";
         }

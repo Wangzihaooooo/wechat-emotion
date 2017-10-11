@@ -33,11 +33,7 @@ exclusion:是将B从依赖树中删除，如上配置，alibaba.apollo.webx不�
       <artifactId>spring-core</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-beans</artifactId>
@@ -192,10 +188,15 @@ exclusion:是将B从依赖树中删除，如上配置，alibaba.apollo.webx不�
     </dependency>
     <!-- ###############################################################log配置和单元测试 相关包 start ############################################################### -->
     <!--系统日志log4-->
-    <dependency>
+    <!--<dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>1.2.17</version>
+    </dependency>-->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-liquibase</artifactId>
+      <version>2.9.1</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
