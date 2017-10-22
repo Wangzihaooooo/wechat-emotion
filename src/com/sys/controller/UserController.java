@@ -31,11 +31,11 @@ public class UserController {
      * @return the int
      */
     @RequestMapping("/checkUser")
-    public @ResponseBody int  addUser(HttpServletRequest request,
+    public @ResponseBody String  addUser(HttpServletRequest request,
                                       @RequestParam("account") String account,
                                       @RequestParam("userId") int userId,
                                       HttpSession session){
-        int success=0;
+
         try{
             User user=userService.getUserById(userId);
             if(user==null){
@@ -43,14 +43,12 @@ public class UserController {
                 user.setAccount(account);
                 user.setUserId(userId);
                 userService.addUser(user);
-                success= 1;
             }
             session.setAttribute("userSession",user);
-            //设置系统的属性，获取项目的speech路径并保存
+            return session.getId();
         }catch (Exception e){
-            success= 0;
+            return null;
         }
-        return success;
     }
 
 }
