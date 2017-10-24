@@ -1,7 +1,6 @@
 package com.sys.persistence.dao;
 
 import com.sys.persistence.domain.User;
-import org.springframework.stereotype.Repository;
 
 public interface UserDao {
     int deleteByPrimaryKey(Integer userId);
@@ -11,6 +10,8 @@ public interface UserDao {
     int insertSelective(User record);
 
     User selectByPrimaryKey(Integer userId);
+
+    User selectByOpenId(String openId);
 
     int updateByPrimaryKeySelective(User record);
 

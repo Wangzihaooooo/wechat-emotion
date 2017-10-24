@@ -3,7 +3,7 @@
 <mapper namespace="com.sys.persistence.dao.UserDao" >
   <resultMap id="BaseResultMap" type="com.sys.persistence.domain.User" >
     <id column="USER_ID_" property="userId" jdbcType="INTEGER" />
-    <result column="FULLNAME_" property="fullname" jdbcType="VARCHAR" />
+    <result column="OPEN_ID_" property="openId" jdbcType="VARCHAR" />
     <result column="ACCOUNT_" property="account" jdbcType="VARCHAR" />
     <result column="PASSWORD_" property="password" jdbcType="VARCHAR" />
     <result column="EMAIL_" property="email" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
     <result column="USER_TYPE_" property="userType" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    USER_ID_, FULLNAME_, ACCOUNT_, PASSWORD_, EMAIL_, MOBILE_, WEIXIN_, CREATE_TIME_,
+    USER_ID_, OPEN_ID_, ACCOUNT_, PASSWORD_, EMAIL_, MOBILE_, WEIXIN_, CREATE_TIME_,
     PHOTO_, SEX_, AGE_, LIMIT_, USER_TYPE_
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -26,17 +26,23 @@
     from sys_user
     where USER_ID_ = #{userId,jdbcType=INTEGER}
   </select>
+  <select id="selectByOpenId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where OPEN_ID_ = #{openId,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sys_user
     where USER_ID_ = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.sys.persistence.domain.User" >
-    insert into sys_user (USER_ID_, FULLNAME_, ACCOUNT_, 
+    insert into sys_user (USER_ID_, OPEN_ID_, ACCOUNT_,
       PASSWORD_, EMAIL_, MOBILE_, 
       WEIXIN_, CREATE_TIME_, PHOTO_, 
       SEX_, AGE_, LIMIT_, USER_TYPE_
       )
-    values (#{userId,jdbcType=INTEGER}, #{fullname,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+    values (#{userId,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR},
       #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
       #{weixin,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, 
       #{sex,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}, #{userType,jdbcType=INTEGER}
@@ -48,8 +54,8 @@
       <if test="userId != null" >
         USER_ID_,
       </if>
-      <if test="fullname != null" >
-        FULLNAME_,
+      <if test="openId != null" >
+        OPEN_ID_,
       </if>
       <if test="account != null" >
         ACCOUNT_,
@@ -89,8 +95,8 @@
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="fullname != null" >
-        #{fullname,jdbcType=VARCHAR},
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
       </if>
       <if test="account != null" >
         #{account,jdbcType=VARCHAR},
@@ -133,8 +139,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.sys.persistence.domain.User" >
     update sys_user
     <set >
-      <if test="fullname != null" >
-        FULLNAME_ = #{fullname,jdbcType=VARCHAR},
+      <if test="openId != null" >
+        OPEN_ID_ = #{openId,jdbcType=VARCHAR},
       </if>
       <if test="account != null" >
         ACCOUNT_ = #{account,jdbcType=VARCHAR},
@@ -174,7 +180,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.sys.persistence.domain.User" >
     update sys_user
-    set FULLNAME_ = #{fullname,jdbcType=VARCHAR},
+    set OPEN_ID_ = #{openId,jdbcType=VARCHAR},
       ACCOUNT_ = #{account,jdbcType=VARCHAR},
       PASSWORD_ = #{password,jdbcType=VARCHAR},
       EMAIL_ = #{email,jdbcType=VARCHAR},

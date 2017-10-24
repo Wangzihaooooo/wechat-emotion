@@ -61,7 +61,7 @@ public class RecognitionEmotionController {
                 speechPath+"/"+wavFileName);
         if(decordSuccess){
             int emotionResult= recognitionEmotionService.recognitionEmotion(wavFileName);
-            if(emotionResult==-1){
+            if(emotionResult!=-1){
                 log.info("情绪识别结果:"+String.valueOf(emotionResult));
                 speech.setTagId(emotionResult);
                 //将speech录音文件的相关数据存入数据库，并且跳转到recommendMusic路径的控制器方法

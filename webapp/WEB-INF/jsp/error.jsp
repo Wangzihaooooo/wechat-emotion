@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>测试文件上传</title>
+<title>error</title>
 </head>
 <body>
-${musicList}
+error
 </body>
 </html>

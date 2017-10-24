@@ -2,8 +2,6 @@ package com.sys.service;
 
 import com.sys.persistence.domain.User;
 
-import java.util.List;
-
 /**
  * The interface User service.
  */
@@ -22,5 +20,13 @@ public interface UserService {
      * @return user by id
      */
     User getUserById(int userId);
+
+    /**
+     * Gets user by open id.
+     *
+     * @param openId the open id
+     * @return the user by open id
+     */
+    User getUserByOpenId(String openId);
 
 }

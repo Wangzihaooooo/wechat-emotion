@@ -24,24 +24,23 @@ public class UserController {
 
     /**
      * Add user int.
-     * 0是登录失败 1是登录成功
      * @param account the account
-     * @param userId  the user id
+     * @param openId  the open id
      * @param session the session
      * @return the int
      */
     @RequestMapping("/checkUser")
     public @ResponseBody String  addUser(HttpServletRequest request,
                                       @RequestParam("account") String account,
-                                      @RequestParam("userId") int userId,
+                                      @RequestParam("openId") String openId,
                                       HttpSession session){
 
         try{
-            User user=userService.getUserById(userId);
+            User user=userService.getUserByOpenId(openId);
             if(user==null){
                 user=new User();
                 user.setAccount(account);
-                user.setUserId(userId);
+                user.setOpenId(openId);
                 userService.addUser(user);
             }
             session.setAttribute("userSession",user);

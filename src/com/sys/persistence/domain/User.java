@@ -5,7 +5,7 @@ import java.util.Date;
 public class User {
     private Integer userId;
 
-    private String fullname;//账号名
+    private String openId;//微信小程序中用户的唯一标识
 
     private String account;//账号
 
@@ -37,12 +37,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getOpenId() {
+        return openId;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname == null ? null : fullname.trim();
+    public void setOpenId(String fullname) {
+        this.openId = fullname == null ? null : fullname.trim();
     }
 
     public String getAccount() {

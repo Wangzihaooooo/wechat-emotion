@@ -12,10 +12,10 @@ from scrapy.utils.project import get_project_settings
 class MusicspiderSpider(scrapy.Spider):
     name = 'musicSpider'
     tagDict={
-        '轻松':0,'舒服':0,'轻音乐':0,
-        '励志':1,'美好':1,'美好':1,
-        '激情':2, '劲爆':2,
-        '寂寞':3,'想念':3,'伤感':3,'深情':3
+        '轻松':1,'舒服':1,'轻音乐':1,
+        '励志':2,'美好':2,'喜悦':2,
+        '纯净':3, '小清新':3,'好听':3,
+        '寂寞':4,'想念':4,'伤感':4,'深情':4
     }
     baseUrl = 'http://music.baidu.com/tag/%s?start=%s&size=20&third_type=0'
     basepage=0

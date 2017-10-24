@@ -333,7 +333,7 @@
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="76" parent="21" name="FULLNAME_">
+    <column id="76" parent="21" name="OPEN_ID_">
       <Position>2</Position>
       <Comment>姓名</Comment>
       <DataType>varchar(255)|0</DataType>
