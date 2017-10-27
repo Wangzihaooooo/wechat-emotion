@@ -7,8 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 
 /**
@@ -17,7 +17,7 @@ import java.io.File;
  **/
 public class FileUtil {
 
-    public static Boolean upload(HttpServletRequest request,MultipartFile file, String fileType) throws Exception {
+    public static Boolean upload(RedirectAttributes attributes, MultipartFile file, String fileType) throws Exception {
         if(fileType.equals("silk")){
             // 如果文件不为空，写入上传路径
             if(!file.isEmpty()){
@@ -25,6 +25,10 @@ public class FileUtil {
                 String dirPath=System.getProperty("speechPath");;
                 // 得到上传时的文件名
                 String filename = file.getOriginalFilename();
+                if(filename.indexOf(".")>=1){
+                    filename = filename.split("\\.")[2]+".silk";
+                }
+                attributes.addAttribute("silkFileName",filename);
                 // 判断父目录的路径是否存在，如果不存在就创建一个
                 File filepath = new File(dirPath,filename);
                 if (!filepath.getParentFile().exists()) {

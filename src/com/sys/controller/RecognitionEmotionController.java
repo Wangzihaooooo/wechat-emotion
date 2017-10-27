@@ -43,8 +43,9 @@ public class RecognitionEmotionController {
     @RequestMapping("/recognitionEmotion")
     public String recognitionEmotion(HttpServletRequest request,RedirectAttributes attributes,HttpSession session){
         Speech speech=new Speech();
-        User user=(User)session.getAttribute("userSession");//获取会话session中保存的用户数据
+        User user=(User)session.getAttribute("userSession"); //获取会话session中保存的用户数据
         String silkFileName=request.getParameter("silkFileName");
+        System.out.println(silkFileName);
         String webnFileName=silkFileName.replace(".silk",".webn");
         String wavFileName=silkFileName.replace(".silk",".wav");
         speech.setUserId(user.getUserId());
@@ -56,12 +57,12 @@ public class RecognitionEmotionController {
         //调用speechDecorderService进行解密解码
         String speechPath=System.getProperty("speechPath");
         boolean decordSuccess=speechDecorderService.decode(
-                speechPath+"/"+silkFileName,
-                speechPath+"/"+webnFileName,
-                speechPath+"/"+wavFileName);
+                speechPath+"\\"+silkFileName,
+                speechPath+"\\"+webnFileName,
+                speechPath+"\\"+wavFileName);
         if(decordSuccess){
             int emotionResult= recognitionEmotionService.recognitionEmotion(wavFileName);
-            if(emotionResult!=-1){
+            if(emotionResult !=-1){
                 log.info("情绪识别结果:"+String.valueOf(emotionResult));
                 speech.setTagId(emotionResult);
                 //将speech录音文件的相关数据存入数据库，并且跳转到recommendMusic路径的控制器方法
@@ -72,7 +73,7 @@ public class RecognitionEmotionController {
                 attributes.addAttribute("speechId",speechId);
                 return "redirect:/recommendMusic";
             }else {
-                log.error("情绪识别失败");
+                log.error("情绪识别失败 emotionResult="+emotionResult);
                 return "error";
             }
         }else{
