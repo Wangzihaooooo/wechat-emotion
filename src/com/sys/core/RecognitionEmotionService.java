@@ -18,10 +18,11 @@ public class RecognitionEmotionService {
      * @return 返回的是int类型   -1--无法识别 0--angry 1--fear 2--happy 3--sad
      */
     public int recognitionEmotion(String fileName){
-        int result = 1;//测试的结果
+        int result = 3;//测试的结果
         String pyPath = System.getProperty("recognitionPyPath")+"\\"+"emotion.py";
         String speechPath = System.getProperty("speechPath")+"\\"+fileName;
         Runtime run = Runtime.getRuntime();
+        System.out.println(pyPath+" "+speechPath);
         try {
             Process process = run.exec("python" +" "+ pyPath + " " + speechPath);
             InputStream in = process.getInputStream();

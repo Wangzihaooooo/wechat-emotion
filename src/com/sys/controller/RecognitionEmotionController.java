@@ -43,9 +43,9 @@ public class RecognitionEmotionController {
     @RequestMapping("/recognitionEmotion")
     public String recognitionEmotion(HttpServletRequest request,RedirectAttributes attributes,HttpSession session){
         Speech speech=new Speech();
+
         User user=(User)session.getAttribute("userSession"); //获取会话session中保存的用户数据
         String silkFileName=request.getParameter("silkFileName");
-        System.out.println(silkFileName);
         String webnFileName=silkFileName.replace(".silk",".webn");
         String wavFileName=silkFileName.replace(".silk",".wav");
         speech.setUserId(user.getUserId());
@@ -73,7 +73,7 @@ public class RecognitionEmotionController {
                 attributes.addAttribute("speechId",speechId);
                 return "redirect:/recommendMusic";
             }else {
-                log.error("情绪识别失败 emotionResult="+emotionResult);
+                log.error("情绪识别失败:emotionResult="+emotionResult);
                 return "error";
             }
         }else{

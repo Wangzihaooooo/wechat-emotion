@@ -1,6 +1,5 @@
 package com.sys.core;
 
-import com.sys.util.Base64Util;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import sun.misc.BASE64Decoder;
@@ -63,8 +62,8 @@ public class SpeechDecorderService {
                     File webmFile = new File(WebnFilePath);
                     //Runtime.getRuntime().exec("chmod 777 -R" + " "+WebnFilePath);
                     BASE64Decoder base64Decoder=new BASE64Decoder();
-                    //byte[] bt = base64Decoder.decodeBuffer(olddata) ;
-                    byte[] bt = Base64Util.decode(olddata) ;
+                    byte[] bt = base64Decoder.decodeBuffer(olddata) ;
+                    //byte[] bt = Base64Util.decode(olddata) ;
                     FileOutputStream in = new FileOutputStream(webmFile);
                     try {
                         in.write(bt, 0, bt.length);
@@ -91,8 +90,6 @@ public class SpeechDecorderService {
     private Boolean decodeToWav(String WebnFilePath,String WavFilePath){
         success=false;
         try {
-            log.info(WebnFilePath);
-            log.info(WavFilePath);
             String path="ffmpeg -i"+" "+WebnFilePath+" "+"-ar 16000 -f wav"+" "+WavFilePath ;
             //String[] cmds = {"/bin/sh", "-c", path};
             Process ps = Runtime.getRuntime().exec(path);
